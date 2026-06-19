@@ -1,3 +1,3 @@
-# Solar Storm
+# IXAXI
 
-NES 5402 ASM indie game
+NES game

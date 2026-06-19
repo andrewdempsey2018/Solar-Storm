@@ -5,7 +5,6 @@
 .include "controllers.asm"
 .include "load_row.asm"
 .include "ClearOAM.asm"
-.include "beach_data.asm"
 .include "station_data.asm"
 .include "ceres_data.asm"
 .include "placeholder_data.asm"
@@ -27,12 +26,12 @@ prep_next_row: .res 1
 
 metatile_row_number: .res 1
 
-; ----------------------------------- ;
-; scratch area
+; --------------------------------------------------
+; Scratch area
+; --------------------------------------------------
 zp_scratch_0: .res 1
 zp_scratch_1: .res 2
 zp_scratch_02: .res 1
-; ----------------------------------- ;
 
 do_render: .res 1
 do_scroll: .res 1
@@ -52,6 +51,8 @@ attribs_hi_pointer: .res 2
 .segment "BSS"
 row_data: .res 64
 attrib_data: .res 8
+
+
 
 .segment "CODE"
 

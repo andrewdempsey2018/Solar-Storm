@@ -1,3 +1,8 @@
+.segment "RODATA"
+.include "../data/beach_data.asm"
+
+.segment "CODE"
+
 .proc debug
   SAVE_REGISTERS
 
