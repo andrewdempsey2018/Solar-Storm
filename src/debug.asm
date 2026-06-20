@@ -1,5 +1,9 @@
 .segment "RODATA"
 .include "../data/beach_data.asm"
+.include "../data/ceres_data.asm"
+.include "../data/placeholder_data.asm"
+.include "../data/station_data.asm"
+.include "../data/title_data.asm"
 
 .segment "CODE"
 

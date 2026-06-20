@@ -5,10 +5,6 @@
 .include "controllers.asm"
 .include "load_row.asm"
 .include "ClearOAM.asm"
-.include "station_data.asm"
-.include "ceres_data.asm"
-.include "placeholder_data.asm"
-.include "title_data.asm"
 .include "init_nametable.asm"
 .include "debug.asm"
 
