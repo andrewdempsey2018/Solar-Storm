@@ -179,6 +179,7 @@ load_titlescreen_palettes:
 ; turn on screen
 ; --------------------------------------------------                 
   lda #%10010000
+  eor nametable_number
   sta PPUCTRL
   lda #%00011110
   sta PPUMASK
