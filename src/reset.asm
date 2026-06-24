@@ -31,20 +31,21 @@ clear_oam:
   sta scroll_y
 
   lda #$00
+  sta nametable_number
+
+  lda #$00
+  sta metatile_row_number
+
+  lda #$00
   sta do_scroll
 
   lda #$01
   sta do_render
 
   lda #$00
-  sta nametable_number
   sta row_address
   sta level_data
   sta prep_next_row
-
-  lda #$00
-  sta metatile_row_number
-  
 
   lda #$00
   sta zp_scratch_0
