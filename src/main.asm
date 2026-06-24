@@ -124,6 +124,8 @@ dont_render:
   lda #0
   sta PPUCTRL
   sta PPUMASK
+  sta PPUSCROLL
+  sta PPUSCROLL
 
 ; --------------------------------------------------
 ; init nametable
@@ -164,9 +166,6 @@ load_titlescreen_palettes:
   lda #>TitleData::Screen1Attrib
   sta attribs_pointer+1
 
-  lda #$00
-  sta nametable_number
-
   jsr init_nametable
 
 ; --------------------------------------------------
@@ -198,10 +197,7 @@ next_row_is_prepared:
 
   jsr read_controller
 
-  jsr debug ; beach
-  ;jsr debug2 ; station
-  ;jsr debug3
-  ;jsr debug4
+  jsr debug
 
 done:
   inc sleeping
