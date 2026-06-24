@@ -1,3 +1,3 @@
-# IXAXI
+# Solar Storm
 
 NES game

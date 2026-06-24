@@ -5,6 +5,11 @@
 .include "controllers.asm"
 .include "load_row.asm"
 .include "ClearOAM.asm"
+.include "beach_data.asm"
+.include "station_data.asm"
+.include "ceres_data.asm"
+.include "placeholder_data.asm"
+.include "title_data.asm"
 .include "init_nametable.asm"
 .include "debug.asm"
 
@@ -23,7 +28,7 @@ prep_next_row: .res 1
 metatile_row_number: .res 1
 
 ; --------------------------------------------------
-; Scratch area
+; scratch area
 ; --------------------------------------------------
 zp_scratch_0: .res 1
 zp_scratch_1: .res 2
@@ -32,8 +37,9 @@ zp_scratch_02: .res 1
 do_render: .res 1
 do_scroll: .res 1
 
-; ----------------------------------- ;
+; --------------------------------------------------
 ; pointers required for rendering levels
+; --------------------------------------------------
 layout_pointer: .res 2
 metatile_top_pointer: .res 2
 metatile_bottom_pointer: .res 2
@@ -42,13 +48,10 @@ screens_lo_pointer: .res 2
 screens_hi_pointer: .res 2
 attribs_lo_pointer: .res 2
 attribs_hi_pointer: .res 2
-; ----------------------------------- ;
 
 .segment "BSS"
 row_data: .res 64
 attrib_data: .res 8
-
-
 
 .segment "CODE"
 
@@ -115,12 +118,16 @@ dont_render:
 .endproc
 
 .proc main
+; --------------------------------------------------
+; turn off rendering
+; --------------------------------------------------
   lda #0
-  sta PPUMASK           ; turn off rendering
+  sta PPUCTRL
+  sta PPUMASK
 
-; ----------------------------------- ;
+; --------------------------------------------------
 ; init nametable
-
+; --------------------------------------------------
   lda #BANK_NUMBER_TITLE_SCREEN
   sta BANK_SWITCH
 
@@ -134,7 +141,7 @@ load_titlescreen_palettes:
   lda TitleData::PaletteTable, x
   sta PPUDATA
   inx
-  cpx #$20              ; 32 colors
+  cpx #$20
   bne load_titlescreen_palettes
   
   lda #<TitleData::Screen1
@@ -162,16 +169,24 @@ load_titlescreen_palettes:
 
   jsr init_nametable
 
-  cli                   ; enable interrupts
+; --------------------------------------------------
+; enable interrupts
+; --------------------------------------------------
+  cli
 
-  lda #%10010000        ; turn on NMIs, sprites use first pattern table
+; --------------------------------------------------
+; turn on NMIs, sprites use first pattern table
+; turn on screen
+; --------------------------------------------------                 
+  lda #%10010000
   sta PPUCTRL
-  lda #%00011110        ; turn on screen
+  lda #%00011110
   sta PPUMASK
-  ;;
 
-  WAIT_VBLANK           ; wait for another vblank before continuing
-
+; --------------------------------------------------
+; wait for another vblank before continuing
+; --------------------------------------------------
+  WAIT_VBLANK
 
 mainloop:
 
@@ -188,7 +203,6 @@ next_row_is_prepared:
   ;jsr debug4
 
 done:
-  ;loop
   inc sleeping
 sleep:
   lda sleeping
