@@ -225,3 +225,4 @@ sleep:
 .incbin "graphics_beach.chr"
 .incbin "graphics_ceres.chr"
 .incbin "graphics_space.chr"
+.incbin "graphics_generic.chr"

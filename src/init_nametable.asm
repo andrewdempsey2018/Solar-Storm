@@ -1,14 +1,14 @@
-; ----------------------------------- ;
-; loads a full nametable & attributes, expects nametable data to be
-; in rows, top left -> bottom right
-; set nametable number (00 or 02)
+; --------------------------------------------------
+; Loads a full nametable & attributes, expects
+; nametable data to be in rows
+; top left -> bottom right.
+
+; Set nametable number (00 or 02).
 ; layout_pointer: set this to the required layout table
 ; 'metatile_top_pointer' should point at top left and top right tiles for metatiles
 ; 'metatile_bottom_pointer' should point at bottom left and bottom right tiles for metatiles
 ; 'attribs_pointer' should point at relevant attributes
-
-; init nametable needs:
-; nametable_number, layout_pointer, metatile_top_pointer, metatile_bottom_pointer, attribs_pointer
+; --------------------------------------------------
 
 .proc init_nametable
   SAVE_REGISTERS

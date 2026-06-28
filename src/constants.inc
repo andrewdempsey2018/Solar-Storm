@@ -29,6 +29,7 @@ BANK_NUMBER_STATION = 1
 BANK_NUMBER_BEACH = 2
 BANK_NUMBER_CERES = 3
 BANK_NUMBER_SPACE = 4
+BANK_NUMBER_GENERIC = 5
 
 ; --------------------------------------------------
 ; Each screen is referenced with a 'SCENE' number.
