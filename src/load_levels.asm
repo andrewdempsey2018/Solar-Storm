@@ -1,3 +1,7 @@
+; TODO this code is very poor, refactor
+; far too much repeated code
+; left here temporarily for debugging reasons
+
 .segment "RODATA"
 
 .include "../data/beach_data.asm"
@@ -39,34 +43,129 @@
   inc scene_number
   lda scene_number
 
-  cmp #SCENE_NUMBER_DEMONCORE_SCREEN
-  beq load_demoncore_static_scene
-  cmp #SCENE_NUMBER_TITLE_SCREEN
-  beq load_titlescreen_static_scene
-  cmp #SCENE_NUMBER_INTRO_SCREEN
-  beq load_beach_gameplay_scene
-  
-  ;SCENE_NUMBER_DEMONCORE_SCREEN = 0
-;SCENE_NUMBER_TITLE_SCREEN = 1
-;SCENE_NUMBER_INTRO_SCREEN = 2
-;SCENE_NUMBER_SHIPSELECT_SCREEN = 3
-;SCENE_NUMBER_LEVEL1TITLE_SCREEN = 4
-;SCENE_NUMBER_LEVEL1GAMEPLAY_SCREEN = 5
-;SCENE_NUMBER_LEVEL1BOSS_SCREEN = 6
-;SCENE_NUMBER_LEVEL2TITLE_SCREEN = 7
-;SCENE_NUMBER_LEVEL2GAMEPLAY_SCREEN = 8
-;SCENE_NUMBER_LEVEL2BOSS_SCREEN = 9
-;SCENE_NUMBER_LEVEL3TITLE_SCREEN = 10
-;SCENE_NUMBER_LEVEL3GAMEPLAY_SCREEN = 11
-;SCENE_NUMBER_LEVEL3BOSS_SCREEN = 12
-;SCENE_NUMBER_LEVEL4TITLE_SCREEN = 13
-;SCENE_NUMBER_LEVEL4GAMEPLAY_SCREEN = 14
-;SCENE_NUMBER_LEVEL4BOSS_SCREEN = 15
-;SCENE_NUMBER_ENDING_SCREEN = 16
+; Scene number has gone past ending scene, reset level number, to the start of the game.
+  cmp #17
+  bne :+
+  lda #0
+  sta scene_number
+:
 
+  cmp #SCENE_NUMBER_DEMONCORE_SCREEN
+  bne :+
+  jmp load_demoncore_static_scene
+:
+  cmp #SCENE_NUMBER_TITLE_SCREEN
+  bne :+
+  jmp load_titlescreen_static_scene
+:
+  cmp #SCENE_NUMBER_INTRO_SCREEN
+  bne :+
+  jmp load_intro_static_scene
+:
+  cmp #SCENE_NUMBER_SHIPSELECT_SCREEN
+  bne :+
+  jmp load_shipselect_static_scene
+:
+  cmp #SCENE_NUMBER_LEVEL1TITLE_SCREEN
+  bne :+
+  jmp load_level1title_static_scene
+:
+  cmp #SCENE_NUMBER_LEVEL1GAMEPLAY_SCREEN
+  bne :+
+  jmp load_level1_gameplay_scene
+:
+  cmp #SCENE_NUMBER_LEVEL1BOSS_SCREEN
+  bne :+
+  jmp load_level1boss_scene
+:
+  cmp #SCENE_NUMBER_LEVEL2TITLE_SCREEN
+  bne :+
+  jmp load_level2title_static_scene
+:
+  cmp #SCENE_NUMBER_LEVEL2GAMEPLAY_SCREEN
+  bne :+
+  jmp load_level2_gameplay_scene
+:
+  cmp #SCENE_NUMBER_LEVEL2BOSS_SCREEN
+  bne :+
+  jmp load_level2boss_scene
+:
+  cmp #SCENE_NUMBER_LEVEL3TITLE_SCREEN
+  bne :+
+  jmp load_level3title_static_scene
+:
+  cmp #SCENE_NUMBER_LEVEL3GAMEPLAY_SCREEN
+  bne :+
+  jmp load_level3_gameplay_scene
+:
+  cmp #SCENE_NUMBER_LEVEL3BOSS_SCREEN
+  bne :+
+  jmp load_level3boss_scene
+:
+  cmp #SCENE_NUMBER_LEVEL4TITLE_SCREEN
+  bne :+
+  jmp load_level4title_static_scene
+:
+  cmp #SCENE_NUMBER_LEVEL4GAMEPLAY_SCREEN
+  bne :+
+  jmp load_level4_gameplay_scene
+:
+  cmp #SCENE_NUMBER_LEVEL4BOSS_SCREEN
+  bne :+
+  jmp load_level4boss_scene
+:
+  cmp #SCENE_NUMBER_ENDING_SCREEN
+  bne :+
+  jmp load_ending_static_scene
+:
+
+; --------------------------------------------------
+; load_demoncore_static_scene
+; --------------------------------------------------
 load_demoncore_static_scene:
+  lda #BANK_NUMBER_GENERIC
+  sta BANK_SWITCH
+
+  ldx PPUSTATUS
+  ldx #$3F
+  stx PPUADDR
+  ldx #$00
+  stx PPUADDR
+
+load_demoncore_screen_palettes:
+  lda DemoncoreData::PaletteTable, x
+  sta PPUDATA
+  inx
+  cpx #$20
+  bne load_demoncore_screen_palettes
+  
+  lda #<DemoncoreData::Screen1
+  sta layout_pointer
+  lda #>DemoncoreData::Screen1
+  sta layout_pointer+1
+
+  lda #<DemoncoreData::MetatileTop
+  sta metatile_top_pointer
+  lda #>DemoncoreData::MetatileTop
+  sta metatile_top_pointer+1
+
+  lda #<DemoncoreData::MetatileBottom
+  sta metatile_bottom_pointer
+  lda #>DemoncoreData::MetatileBottom
+  sta metatile_bottom_pointer+1
+
+  lda #<DemoncoreData::Screen1Attrib
+  sta attribs_pointer
+  lda #>DemoncoreData::Screen1Attrib
+  sta attribs_pointer+1
+
+  jsr init_nametable
+
   jmp start_static_screen_level
 
+; --------------------------------------------------
+; Load title screen.
+; --------------------------------------------------
 load_titlescreen_static_scene:
   lda #BANK_NUMBER_TITLE_SCREEN
   sta BANK_SWITCH
@@ -109,10 +208,141 @@ load_titlescreen_palettes:
   jmp start_static_screen_level
 
 ; --------------------------------------------------
-; Load Beach gameplay scene.
+; load_intro_static_scene
 ; --------------------------------------------------
-load_beach_gameplay_scene:
-; load palettes
+load_intro_static_scene:
+  lda #BANK_NUMBER_TITLE_SCREEN
+  sta BANK_SWITCH
+
+  ldx PPUSTATUS
+  ldx #$3F
+  stx PPUADDR
+  ldx #$00
+  stx PPUADDR
+
+load_intro_scene_palettes:
+  lda TitleData::PaletteTable, x
+  sta PPUDATA
+  inx
+  cpx #$20
+  bne load_intro_scene_palettes
+  
+  lda #<TitleData::Screen1
+  sta layout_pointer
+  lda #>TitleData::Screen1
+  sta layout_pointer+1
+
+  lda #<TitleData::MetatileTop
+  sta metatile_top_pointer
+  lda #>TitleData::MetatileTop
+  sta metatile_top_pointer+1
+
+  lda #<TitleData::MetatileBottom
+  sta metatile_bottom_pointer
+  lda #>TitleData::MetatileBottom
+  sta metatile_bottom_pointer+1
+
+  lda #<TitleData::Screen1Attrib
+  sta attribs_pointer
+  lda #>TitleData::Screen1Attrib
+  sta attribs_pointer+1
+
+  jsr init_nametable
+
+  jmp start_static_screen_level
+
+; --------------------------------------------------
+; load_shipselect_static_scene
+; --------------------------------------------------
+load_shipselect_static_scene:
+  lda #BANK_NUMBER_TITLE_SCREEN
+  sta BANK_SWITCH
+
+  ldx PPUSTATUS
+  ldx #$3F
+  stx PPUADDR
+  ldx #$00
+  stx PPUADDR
+
+load_shipselect_scene_palettes:
+  lda TitleData::PaletteTable, x
+  sta PPUDATA
+  inx
+  cpx #$20
+  bne load_shipselect_scene_palettes
+  
+  lda #<TitleData::Screen1
+  sta layout_pointer
+  lda #>TitleData::Screen1
+  sta layout_pointer+1
+
+  lda #<TitleData::MetatileTop
+  sta metatile_top_pointer
+  lda #>TitleData::MetatileTop
+  sta metatile_top_pointer+1
+
+  lda #<TitleData::MetatileBottom
+  sta metatile_bottom_pointer
+  lda #>TitleData::MetatileBottom
+  sta metatile_bottom_pointer+1
+
+  lda #<TitleData::Screen1Attrib
+  sta attribs_pointer
+  lda #>TitleData::Screen1Attrib
+  sta attribs_pointer+1
+
+  jsr init_nametable
+
+  jmp start_static_screen_level
+
+; --------------------------------------------------
+; load_level1title_static_scene
+; --------------------------------------------------
+load_level1title_static_scene:
+  lda #BANK_NUMBER_TITLE_SCREEN
+  sta BANK_SWITCH
+
+  ldx PPUSTATUS
+  ldx #$3F
+  stx PPUADDR
+  ldx #$00
+  stx PPUADDR
+
+load_level1_title_scene_palettes:
+  lda TitleData::PaletteTable, x
+  sta PPUDATA
+  inx
+  cpx #$20
+  bne load_level1_title_scene_palettes
+  
+  lda #<TitleData::Screen1
+  sta layout_pointer
+  lda #>TitleData::Screen1
+  sta layout_pointer+1
+
+  lda #<TitleData::MetatileTop
+  sta metatile_top_pointer
+  lda #>TitleData::MetatileTop
+  sta metatile_top_pointer+1
+
+  lda #<TitleData::MetatileBottom
+  sta metatile_bottom_pointer
+  lda #>TitleData::MetatileBottom
+  sta metatile_bottom_pointer+1
+
+  lda #<TitleData::Screen1Attrib
+  sta attribs_pointer
+  lda #>TitleData::Screen1Attrib
+  sta attribs_pointer+1
+
+  jsr init_nametable
+
+  jmp start_static_screen_level
+
+; --------------------------------------------------
+; load_level1_gameplay_scene
+; --------------------------------------------------
+load_level1_gameplay_scene:
   ldx PPUSTATUS
   ldx #$3F
   stx PPUADDR
@@ -204,6 +434,840 @@ load_beach_gameplay_scene:
   jmp start_gameplay_level
 
 ; --------------------------------------------------
+; load_level1boss_scene
+; --------------------------------------------------
+load_level1boss_scene:
+  ldx PPUSTATUS
+  ldx #$3F
+  stx PPUADDR
+  ldx #$00
+  stx PPUADDR
+
+  ldx #$00
+@load_palette:
+  lda BeachData::PaletteTable, x
+  sta PPUDATA
+  inx
+  cpx #$20
+  bne @load_palette
+
+  lda #BANK_NUMBER_BEACH
+  sta BANK_SWITCH
+
+  lda #<BeachData::ScreenX
+  sta layout_pointer
+  lda #>BeachData::ScreenX
+  sta layout_pointer+1
+
+  lda #<BeachData::MetatileTop
+  sta metatile_top_pointer
+  lda #>BeachData::MetatileTop
+  sta metatile_top_pointer+1
+
+  lda #<BeachData::MetatileBottom
+  sta metatile_bottom_pointer
+  lda #>BeachData::MetatileBottom
+  sta metatile_bottom_pointer+1
+
+  lda #<BeachData::ScreenXAttrib
+  sta attribs_pointer
+  lda #>BeachData::ScreenXAttrib
+  sta attribs_pointer+1
+
+  lda #0
+  sta nametable_number
+  jsr init_nametable
+
+  lda #2
+  sta nametable_number
+  jsr init_nametable
+
+  lda #<BeachData::Screen1
+  sta layout_pointer
+  lda #>BeachData::Screen1
+  sta layout_pointer+1
+
+  lda #<BeachData::MetatileTop
+  sta metatile_top_pointer
+  lda #>BeachData::MetatileTop
+  sta metatile_top_pointer+1
+
+  lda #<BeachData::MetatileBottom
+  sta metatile_bottom_pointer
+  lda #>BeachData::MetatileBottom
+  sta metatile_bottom_pointer+1
+
+
+  lda #<BeachData::ScreensLow
+  sta screens_lo_pointer
+  lda #>BeachData::ScreensLow
+  sta screens_lo_pointer+1
+
+  lda #<BeachData::ScreensHigh
+  sta screens_hi_pointer
+  lda #>BeachData::ScreensHigh
+  sta screens_hi_pointer+1
+
+  lda #<BeachData::AttribsLow
+  sta attribs_lo_pointer
+  lda #>BeachData::AttribsLow
+  sta attribs_lo_pointer+1
+
+  lda #<BeachData::AttribsHigh
+  sta attribs_hi_pointer
+  lda #>BeachData::AttribsHigh
+  sta attribs_hi_pointer+1
+
+  ldy #$00
+
+  lda (attribs_lo_pointer), y
+  sta attribs_pointer
+  lda (attribs_hi_pointer), y
+  sta attribs_pointer+1
+
+  jmp start_gameplay_level
+
+; --------------------------------------------------
+; load_level2title_static_scene
+; --------------------------------------------------
+load_level2title_static_scene:
+  lda #BANK_NUMBER_TITLE_SCREEN
+  sta BANK_SWITCH
+
+  ldx PPUSTATUS
+  ldx #$3F
+  stx PPUADDR
+  ldx #$00
+  stx PPUADDR
+
+load_level2_title_scene_palettes:
+  lda TitleData::PaletteTable, x
+  sta PPUDATA
+  inx
+  cpx #$20
+  bne load_level2_title_scene_palettes
+  
+  lda #<TitleData::Screen1
+  sta layout_pointer
+  lda #>TitleData::Screen1
+  sta layout_pointer+1
+
+  lda #<TitleData::MetatileTop
+  sta metatile_top_pointer
+  lda #>TitleData::MetatileTop
+  sta metatile_top_pointer+1
+
+  lda #<TitleData::MetatileBottom
+  sta metatile_bottom_pointer
+  lda #>TitleData::MetatileBottom
+  sta metatile_bottom_pointer+1
+
+  lda #<TitleData::Screen1Attrib
+  sta attribs_pointer
+  lda #>TitleData::Screen1Attrib
+  sta attribs_pointer+1
+
+  jsr init_nametable
+
+  jmp start_static_screen_level
+
+; --------------------------------------------------
+; load_level2_gameplay_scene
+; --------------------------------------------------
+load_level2_gameplay_scene:
+  ldx PPUSTATUS
+  ldx #$3F
+  stx PPUADDR
+  ldx #$00
+  stx PPUADDR
+
+  ldx #$00
+@load_palette:
+  lda BeachData::PaletteTable, x
+  sta PPUDATA
+  inx
+  cpx #$20
+  bne @load_palette
+
+  lda #BANK_NUMBER_BEACH
+  sta BANK_SWITCH
+
+  lda #<BeachData::ScreenX
+  sta layout_pointer
+  lda #>BeachData::ScreenX
+  sta layout_pointer+1
+
+  lda #<BeachData::MetatileTop
+  sta metatile_top_pointer
+  lda #>BeachData::MetatileTop
+  sta metatile_top_pointer+1
+
+  lda #<BeachData::MetatileBottom
+  sta metatile_bottom_pointer
+  lda #>BeachData::MetatileBottom
+  sta metatile_bottom_pointer+1
+
+  lda #<BeachData::ScreenXAttrib
+  sta attribs_pointer
+  lda #>BeachData::ScreenXAttrib
+  sta attribs_pointer+1
+
+  lda #0
+  sta nametable_number
+  jsr init_nametable
+
+  lda #2
+  sta nametable_number
+  jsr init_nametable
+
+  lda #<BeachData::Screen1
+  sta layout_pointer
+  lda #>BeachData::Screen1
+  sta layout_pointer+1
+
+  lda #<BeachData::MetatileTop
+  sta metatile_top_pointer
+  lda #>BeachData::MetatileTop
+  sta metatile_top_pointer+1
+
+  lda #<BeachData::MetatileBottom
+  sta metatile_bottom_pointer
+  lda #>BeachData::MetatileBottom
+  sta metatile_bottom_pointer+1
+
+
+  lda #<BeachData::ScreensLow
+  sta screens_lo_pointer
+  lda #>BeachData::ScreensLow
+  sta screens_lo_pointer+1
+
+  lda #<BeachData::ScreensHigh
+  sta screens_hi_pointer
+  lda #>BeachData::ScreensHigh
+  sta screens_hi_pointer+1
+
+  lda #<BeachData::AttribsLow
+  sta attribs_lo_pointer
+  lda #>BeachData::AttribsLow
+  sta attribs_lo_pointer+1
+
+  lda #<BeachData::AttribsHigh
+  sta attribs_hi_pointer
+  lda #>BeachData::AttribsHigh
+  sta attribs_hi_pointer+1
+
+  ldy #$00
+
+  lda (attribs_lo_pointer), y
+  sta attribs_pointer
+  lda (attribs_hi_pointer), y
+  sta attribs_pointer+1
+
+  jmp start_gameplay_level
+
+; --------------------------------------------------
+; load_level2boss_scene
+; --------------------------------------------------
+load_level2boss_scene:
+  ldx PPUSTATUS
+  ldx #$3F
+  stx PPUADDR
+  ldx #$00
+  stx PPUADDR
+
+  ldx #$00
+@load_palette:
+  lda BeachData::PaletteTable, x
+  sta PPUDATA
+  inx
+  cpx #$20
+  bne @load_palette
+
+  lda #BANK_NUMBER_BEACH
+  sta BANK_SWITCH
+
+  lda #<BeachData::ScreenX
+  sta layout_pointer
+  lda #>BeachData::ScreenX
+  sta layout_pointer+1
+
+  lda #<BeachData::MetatileTop
+  sta metatile_top_pointer
+  lda #>BeachData::MetatileTop
+  sta metatile_top_pointer+1
+
+  lda #<BeachData::MetatileBottom
+  sta metatile_bottom_pointer
+  lda #>BeachData::MetatileBottom
+  sta metatile_bottom_pointer+1
+
+  lda #<BeachData::ScreenXAttrib
+  sta attribs_pointer
+  lda #>BeachData::ScreenXAttrib
+  sta attribs_pointer+1
+
+  lda #0
+  sta nametable_number
+  jsr init_nametable
+
+  lda #2
+  sta nametable_number
+  jsr init_nametable
+
+  lda #<BeachData::Screen1
+  sta layout_pointer
+  lda #>BeachData::Screen1
+  sta layout_pointer+1
+
+  lda #<BeachData::MetatileTop
+  sta metatile_top_pointer
+  lda #>BeachData::MetatileTop
+  sta metatile_top_pointer+1
+
+  lda #<BeachData::MetatileBottom
+  sta metatile_bottom_pointer
+  lda #>BeachData::MetatileBottom
+  sta metatile_bottom_pointer+1
+
+
+  lda #<BeachData::ScreensLow
+  sta screens_lo_pointer
+  lda #>BeachData::ScreensLow
+  sta screens_lo_pointer+1
+
+  lda #<BeachData::ScreensHigh
+  sta screens_hi_pointer
+  lda #>BeachData::ScreensHigh
+  sta screens_hi_pointer+1
+
+  lda #<BeachData::AttribsLow
+  sta attribs_lo_pointer
+  lda #>BeachData::AttribsLow
+  sta attribs_lo_pointer+1
+
+  lda #<BeachData::AttribsHigh
+  sta attribs_hi_pointer
+  lda #>BeachData::AttribsHigh
+  sta attribs_hi_pointer+1
+
+  ldy #$00
+
+  lda (attribs_lo_pointer), y
+  sta attribs_pointer
+  lda (attribs_hi_pointer), y
+  sta attribs_pointer+1
+
+  jmp start_gameplay_level
+
+; --------------------------------------------------
+; load_level3title_static_scene
+; --------------------------------------------------
+load_level3title_static_scene:
+  lda #BANK_NUMBER_TITLE_SCREEN
+  sta BANK_SWITCH
+
+  ldx PPUSTATUS
+  ldx #$3F
+  stx PPUADDR
+  ldx #$00
+  stx PPUADDR
+
+load_level3_title_scene_palettes:
+  lda TitleData::PaletteTable, x
+  sta PPUDATA
+  inx
+  cpx #$20
+  bne load_level3_title_scene_palettes
+  
+  lda #<TitleData::Screen1
+  sta layout_pointer
+  lda #>TitleData::Screen1
+  sta layout_pointer+1
+
+  lda #<TitleData::MetatileTop
+  sta metatile_top_pointer
+  lda #>TitleData::MetatileTop
+  sta metatile_top_pointer+1
+
+  lda #<TitleData::MetatileBottom
+  sta metatile_bottom_pointer
+  lda #>TitleData::MetatileBottom
+  sta metatile_bottom_pointer+1
+
+  lda #<TitleData::Screen1Attrib
+  sta attribs_pointer
+  lda #>TitleData::Screen1Attrib
+  sta attribs_pointer+1
+
+  jsr init_nametable
+
+  jmp start_static_screen_level
+
+; --------------------------------------------------
+; load_level3_gameplay_scene
+; --------------------------------------------------
+load_level3_gameplay_scene:
+  ldx PPUSTATUS
+  ldx #$3F
+  stx PPUADDR
+  ldx #$00
+  stx PPUADDR
+
+  ldx #$00
+@load_palette:
+  lda BeachData::PaletteTable, x
+  sta PPUDATA
+  inx
+  cpx #$20
+  bne @load_palette
+
+  lda #BANK_NUMBER_BEACH
+  sta BANK_SWITCH
+
+  lda #<BeachData::ScreenX
+  sta layout_pointer
+  lda #>BeachData::ScreenX
+  sta layout_pointer+1
+
+  lda #<BeachData::MetatileTop
+  sta metatile_top_pointer
+  lda #>BeachData::MetatileTop
+  sta metatile_top_pointer+1
+
+  lda #<BeachData::MetatileBottom
+  sta metatile_bottom_pointer
+  lda #>BeachData::MetatileBottom
+  sta metatile_bottom_pointer+1
+
+  lda #<BeachData::ScreenXAttrib
+  sta attribs_pointer
+  lda #>BeachData::ScreenXAttrib
+  sta attribs_pointer+1
+
+  lda #0
+  sta nametable_number
+  jsr init_nametable
+
+  lda #2
+  sta nametable_number
+  jsr init_nametable
+
+  lda #<BeachData::Screen1
+  sta layout_pointer
+  lda #>BeachData::Screen1
+  sta layout_pointer+1
+
+  lda #<BeachData::MetatileTop
+  sta metatile_top_pointer
+  lda #>BeachData::MetatileTop
+  sta metatile_top_pointer+1
+
+  lda #<BeachData::MetatileBottom
+  sta metatile_bottom_pointer
+  lda #>BeachData::MetatileBottom
+  sta metatile_bottom_pointer+1
+
+
+  lda #<BeachData::ScreensLow
+  sta screens_lo_pointer
+  lda #>BeachData::ScreensLow
+  sta screens_lo_pointer+1
+
+  lda #<BeachData::ScreensHigh
+  sta screens_hi_pointer
+  lda #>BeachData::ScreensHigh
+  sta screens_hi_pointer+1
+
+  lda #<BeachData::AttribsLow
+  sta attribs_lo_pointer
+  lda #>BeachData::AttribsLow
+  sta attribs_lo_pointer+1
+
+  lda #<BeachData::AttribsHigh
+  sta attribs_hi_pointer
+  lda #>BeachData::AttribsHigh
+  sta attribs_hi_pointer+1
+
+  ldy #$00
+
+  lda (attribs_lo_pointer), y
+  sta attribs_pointer
+  lda (attribs_hi_pointer), y
+  sta attribs_pointer+1
+
+  jmp start_gameplay_level
+
+; --------------------------------------------------
+; load_level3boss_scene
+; --------------------------------------------------
+load_level3boss_scene:
+  ldx PPUSTATUS
+  ldx #$3F
+  stx PPUADDR
+  ldx #$00
+  stx PPUADDR
+
+  ldx #$00
+@load_palette:
+  lda BeachData::PaletteTable, x
+  sta PPUDATA
+  inx
+  cpx #$20
+  bne @load_palette
+
+  lda #BANK_NUMBER_BEACH
+  sta BANK_SWITCH
+
+  lda #<BeachData::ScreenX
+  sta layout_pointer
+  lda #>BeachData::ScreenX
+  sta layout_pointer+1
+
+  lda #<BeachData::MetatileTop
+  sta metatile_top_pointer
+  lda #>BeachData::MetatileTop
+  sta metatile_top_pointer+1
+
+  lda #<BeachData::MetatileBottom
+  sta metatile_bottom_pointer
+  lda #>BeachData::MetatileBottom
+  sta metatile_bottom_pointer+1
+
+  lda #<BeachData::ScreenXAttrib
+  sta attribs_pointer
+  lda #>BeachData::ScreenXAttrib
+  sta attribs_pointer+1
+
+  lda #0
+  sta nametable_number
+  jsr init_nametable
+
+  lda #2
+  sta nametable_number
+  jsr init_nametable
+
+  lda #<BeachData::Screen1
+  sta layout_pointer
+  lda #>BeachData::Screen1
+  sta layout_pointer+1
+
+  lda #<BeachData::MetatileTop
+  sta metatile_top_pointer
+  lda #>BeachData::MetatileTop
+  sta metatile_top_pointer+1
+
+  lda #<BeachData::MetatileBottom
+  sta metatile_bottom_pointer
+  lda #>BeachData::MetatileBottom
+  sta metatile_bottom_pointer+1
+
+
+  lda #<BeachData::ScreensLow
+  sta screens_lo_pointer
+  lda #>BeachData::ScreensLow
+  sta screens_lo_pointer+1
+
+  lda #<BeachData::ScreensHigh
+  sta screens_hi_pointer
+  lda #>BeachData::ScreensHigh
+  sta screens_hi_pointer+1
+
+  lda #<BeachData::AttribsLow
+  sta attribs_lo_pointer
+  lda #>BeachData::AttribsLow
+  sta attribs_lo_pointer+1
+
+  lda #<BeachData::AttribsHigh
+  sta attribs_hi_pointer
+  lda #>BeachData::AttribsHigh
+  sta attribs_hi_pointer+1
+
+  ldy #$00
+
+  lda (attribs_lo_pointer), y
+  sta attribs_pointer
+  lda (attribs_hi_pointer), y
+  sta attribs_pointer+1
+
+  jmp start_gameplay_level
+
+; --------------------------------------------------
+; load_level4title_static_scene
+; --------------------------------------------------
+load_level4title_static_scene:
+  lda #BANK_NUMBER_TITLE_SCREEN
+  sta BANK_SWITCH
+
+  ldx PPUSTATUS
+  ldx #$3F
+  stx PPUADDR
+  ldx #$00
+  stx PPUADDR
+
+load_level4_title_scene_palettes:
+  lda TitleData::PaletteTable, x
+  sta PPUDATA
+  inx
+  cpx #$20
+  bne load_level4_title_scene_palettes
+  
+  lda #<TitleData::Screen1
+  sta layout_pointer
+  lda #>TitleData::Screen1
+  sta layout_pointer+1
+
+  lda #<TitleData::MetatileTop
+  sta metatile_top_pointer
+  lda #>TitleData::MetatileTop
+  sta metatile_top_pointer+1
+
+  lda #<TitleData::MetatileBottom
+  sta metatile_bottom_pointer
+  lda #>TitleData::MetatileBottom
+  sta metatile_bottom_pointer+1
+
+  lda #<TitleData::Screen1Attrib
+  sta attribs_pointer
+  lda #>TitleData::Screen1Attrib
+  sta attribs_pointer+1
+
+  jsr init_nametable
+
+  jmp start_static_screen_level
+
+; --------------------------------------------------
+; load_level4_gameplay_scene
+; --------------------------------------------------
+load_level4_gameplay_scene:
+  ldx PPUSTATUS
+  ldx #$3F
+  stx PPUADDR
+  ldx #$00
+  stx PPUADDR
+
+  ldx #$00
+@load_palette:
+  lda BeachData::PaletteTable, x
+  sta PPUDATA
+  inx
+  cpx #$20
+  bne @load_palette
+
+  lda #BANK_NUMBER_BEACH
+  sta BANK_SWITCH
+
+  lda #<BeachData::ScreenX
+  sta layout_pointer
+  lda #>BeachData::ScreenX
+  sta layout_pointer+1
+
+  lda #<BeachData::MetatileTop
+  sta metatile_top_pointer
+  lda #>BeachData::MetatileTop
+  sta metatile_top_pointer+1
+
+  lda #<BeachData::MetatileBottom
+  sta metatile_bottom_pointer
+  lda #>BeachData::MetatileBottom
+  sta metatile_bottom_pointer+1
+
+  lda #<BeachData::ScreenXAttrib
+  sta attribs_pointer
+  lda #>BeachData::ScreenXAttrib
+  sta attribs_pointer+1
+
+  lda #0
+  sta nametable_number
+  jsr init_nametable
+
+  lda #2
+  sta nametable_number
+  jsr init_nametable
+
+  lda #<BeachData::Screen1
+  sta layout_pointer
+  lda #>BeachData::Screen1
+  sta layout_pointer+1
+
+  lda #<BeachData::MetatileTop
+  sta metatile_top_pointer
+  lda #>BeachData::MetatileTop
+  sta metatile_top_pointer+1
+
+  lda #<BeachData::MetatileBottom
+  sta metatile_bottom_pointer
+  lda #>BeachData::MetatileBottom
+  sta metatile_bottom_pointer+1
+
+
+  lda #<BeachData::ScreensLow
+  sta screens_lo_pointer
+  lda #>BeachData::ScreensLow
+  sta screens_lo_pointer+1
+
+  lda #<BeachData::ScreensHigh
+  sta screens_hi_pointer
+  lda #>BeachData::ScreensHigh
+  sta screens_hi_pointer+1
+
+  lda #<BeachData::AttribsLow
+  sta attribs_lo_pointer
+  lda #>BeachData::AttribsLow
+  sta attribs_lo_pointer+1
+
+  lda #<BeachData::AttribsHigh
+  sta attribs_hi_pointer
+  lda #>BeachData::AttribsHigh
+  sta attribs_hi_pointer+1
+
+  ldy #$00
+
+  lda (attribs_lo_pointer), y
+  sta attribs_pointer
+  lda (attribs_hi_pointer), y
+  sta attribs_pointer+1
+
+  jmp start_gameplay_level
+
+; --------------------------------------------------
+; load_level4boss_scene
+; --------------------------------------------------
+load_level4boss_scene:
+  ldx PPUSTATUS
+  ldx #$3F
+  stx PPUADDR
+  ldx #$00
+  stx PPUADDR
+
+  ldx #$00
+@load_palette:
+  lda BeachData::PaletteTable, x
+  sta PPUDATA
+  inx
+  cpx #$20
+  bne @load_palette
+
+  lda #BANK_NUMBER_BEACH
+  sta BANK_SWITCH
+
+  lda #<BeachData::ScreenX
+  sta layout_pointer
+  lda #>BeachData::ScreenX
+  sta layout_pointer+1
+
+  lda #<BeachData::MetatileTop
+  sta metatile_top_pointer
+  lda #>BeachData::MetatileTop
+  sta metatile_top_pointer+1
+
+  lda #<BeachData::MetatileBottom
+  sta metatile_bottom_pointer
+  lda #>BeachData::MetatileBottom
+  sta metatile_bottom_pointer+1
+
+  lda #<BeachData::ScreenXAttrib
+  sta attribs_pointer
+  lda #>BeachData::ScreenXAttrib
+  sta attribs_pointer+1
+
+  lda #0
+  sta nametable_number
+  jsr init_nametable
+
+  lda #2
+  sta nametable_number
+  jsr init_nametable
+
+  lda #<BeachData::Screen1
+  sta layout_pointer
+  lda #>BeachData::Screen1
+  sta layout_pointer+1
+
+  lda #<BeachData::MetatileTop
+  sta metatile_top_pointer
+  lda #>BeachData::MetatileTop
+  sta metatile_top_pointer+1
+
+  lda #<BeachData::MetatileBottom
+  sta metatile_bottom_pointer
+  lda #>BeachData::MetatileBottom
+  sta metatile_bottom_pointer+1
+
+
+  lda #<BeachData::ScreensLow
+  sta screens_lo_pointer
+  lda #>BeachData::ScreensLow
+  sta screens_lo_pointer+1
+
+  lda #<BeachData::ScreensHigh
+  sta screens_hi_pointer
+  lda #>BeachData::ScreensHigh
+  sta screens_hi_pointer+1
+
+  lda #<BeachData::AttribsLow
+  sta attribs_lo_pointer
+  lda #>BeachData::AttribsLow
+  sta attribs_lo_pointer+1
+
+  lda #<BeachData::AttribsHigh
+  sta attribs_hi_pointer
+  lda #>BeachData::AttribsHigh
+  sta attribs_hi_pointer+1
+
+  ldy #$00
+
+  lda (attribs_lo_pointer), y
+  sta attribs_pointer
+  lda (attribs_hi_pointer), y
+  sta attribs_pointer+1
+
+  jmp start_gameplay_level
+
+; --------------------------------------------------
+; load_ending_static_scene
+; --------------------------------------------------
+load_ending_static_scene:
+  lda #BANK_NUMBER_TITLE_SCREEN
+  sta BANK_SWITCH
+
+  ldx PPUSTATUS
+  ldx #$3F
+  stx PPUADDR
+  ldx #$00
+  stx PPUADDR
+
+load_ending_scene_palettes:
+  lda TitleData::PaletteTable, x
+  sta PPUDATA
+  inx
+  cpx #$20
+  bne load_ending_scene_palettes
+  
+  lda #<TitleData::Screen1
+  sta layout_pointer
+  lda #>TitleData::Screen1
+  sta layout_pointer+1
+
+  lda #<TitleData::MetatileTop
+  sta metatile_top_pointer
+  lda #>TitleData::MetatileTop
+  sta metatile_top_pointer+1
+
+  lda #<TitleData::MetatileBottom
+  sta metatile_bottom_pointer
+  lda #>TitleData::MetatileBottom
+  sta metatile_bottom_pointer+1
+
+  lda #<TitleData::Screen1Attrib
+  sta attribs_pointer
+  lda #>TitleData::Screen1Attrib
+  sta attribs_pointer+1
+
+  jsr init_nametable
+
+  jmp start_static_screen_level
+
+; --------------------------------------------------
 ; prepare for scrolling
 ; --------------------------------------------------
 start_gameplay_level:
@@ -220,7 +1284,7 @@ start_gameplay_level:
   jmp turn_on_rendering
 
 start_static_screen_level:
-; add code specific to static screen type levels
+; TODO add code specific to static screen type leevels
 
 ; --------------------------------------------------
 ; turn on NMIs, sprites use first pattern table
