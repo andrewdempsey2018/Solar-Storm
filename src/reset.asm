@@ -89,9 +89,8 @@ clear_attrib_data:
   cpx #8
   bne clear_attrib_data
 
-; Need level number to wrap to #$00 on game start
-  lda #$FF
-  sta level_number
+  lda #$00
+  sta scene_number
 
 ; --------------------------------------------------
 ; Finished clearing memory, vblank wait then go to game.

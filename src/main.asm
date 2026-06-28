@@ -33,7 +33,7 @@ do_render: .res 1
 do_scroll: .res 1
 
 ; --------------------------------------------------
-; pointers required for rendering levels
+; Pointers required for rendering levels
 ; --------------------------------------------------
 layout_pointer: .res 2
 metatile_top_pointer: .res 2
@@ -47,7 +47,7 @@ attribs_hi_pointer: .res 2
 .segment "BSS"
 row_data: .res 64
 attrib_data: .res 8
-level_number: .res 1
+scene_number: .res 1
 
 .segment "CODE"
 
