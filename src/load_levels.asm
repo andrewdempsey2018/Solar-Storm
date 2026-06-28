@@ -1,3 +1,13 @@
+.segment "RODATA"
+
+.include "../data/beach_data.asm"
+.include "../data/station_data.asm"
+.include "../data/ceres_data.asm"
+.include "../data/space_data.asm"
+.include "../data/title_data.asm"
+
+.segment "CODE"
+
 .proc load_station
   SAVE_REGISTERS
 
@@ -203,6 +213,8 @@
   bne @load_palette
 ; ----------------------------------- ;
 
+  lda #0
+  sta nametable_number
   jsr init_nametable
 
   lda #2

@@ -1,6 +1,6 @@
 .segment "RODATA"
 
-.scope PlaceholderData
+.scope SpaceData
 
 ; ----------------------------------- ;
 ; metatile defs max 128 tiles 128*2=256)
