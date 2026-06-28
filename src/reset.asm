@@ -69,6 +69,31 @@ clear_oam:
   sta attribs_pointer
   sta attribs_pointer+1
 
+; --------------------------------------------------
+; clear BSS memory.
+; --------------------------------------------------
+
+  lda #0
+
+  ldx #0
+clear_row_data:
+  sta row_data
+  inx
+  cpx #64
+  bne clear_row_data
+
+  ldx #0
+clear_attrib_data:
+  sta attrib_data
+  inx
+  cpx #8
+  bne clear_attrib_data
+
+  sta level_number
+
+; --------------------------------------------------
+; Finished clearing memory, wait then go to game.
+; --------------------------------------------------
   WAIT_VBLANK
   
   jmp main

@@ -47,6 +47,7 @@ attribs_hi_pointer: .res 2
 .segment "BSS"
 row_data: .res 64
 attrib_data: .res 8
+level_number: .res 1
 
 .segment "CODE"
 
