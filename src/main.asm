@@ -124,9 +124,9 @@ dont_render:
   sta PPUSCROLL
 
 ; --------------------------------------------------
-; init nametable
+; Load first screen
 ; --------------------------------------------------
-  lda #BANK_NUMBER_TITLE_SCREEN
+  lda #BANK_NUMBER_GENERIC
   sta BANK_SWITCH
 
   ldx PPUSTATUS
@@ -135,31 +135,31 @@ dont_render:
   ldx #$00
   stx PPUADDR
 
-load_titlescreen_palettes:
-  lda TitleData::PaletteTable, x
+load_demoncore_screen_palettes:
+  lda DemoncoreData::PaletteTable, x
   sta PPUDATA
   inx
   cpx #$20
-  bne load_titlescreen_palettes
+  bne load_demoncore_screen_palettes
   
-  lda #<TitleData::Screen1
+  lda #<DemoncoreData::Screen1
   sta layout_pointer
-  lda #>TitleData::Screen1
+  lda #>DemoncoreData::Screen1
   sta layout_pointer+1
 
-  lda #<TitleData::MetatileTop
+  lda #<DemoncoreData::MetatileTop
   sta metatile_top_pointer
-  lda #>TitleData::MetatileTop
+  lda #>DemoncoreData::MetatileTop
   sta metatile_top_pointer+1
 
-  lda #<TitleData::MetatileBottom
+  lda #<DemoncoreData::MetatileBottom
   sta metatile_bottom_pointer
-  lda #>TitleData::MetatileBottom
+  lda #>DemoncoreData::MetatileBottom
   sta metatile_bottom_pointer+1
 
-  lda #<TitleData::Screen1Attrib
+  lda #<DemoncoreData::Screen1Attrib
   sta attribs_pointer
-  lda #>TitleData::Screen1Attrib
+  lda #>DemoncoreData::Screen1Attrib
   sta attribs_pointer+1
 
   jsr init_nametable
@@ -220,9 +220,9 @@ sleep:
 .addr nmi_handler, reset_handler, irq_handler
 
 .segment "CHR"
+.incbin "graphics_generic.chr"
 .incbin "graphics_title.chr"
 .incbin "graphics_station.chr"
 .incbin "graphics_beach.chr"
 .incbin "graphics_ceres.chr"
 .incbin "graphics_space.chr"
-.incbin "graphics_generic.chr"

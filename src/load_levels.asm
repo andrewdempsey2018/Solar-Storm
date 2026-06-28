@@ -5,6 +5,7 @@
 .include "../data/ceres_data.asm"
 .include "../data/space_data.asm"
 .include "../data/title_data.asm"
+.include "../data/demoncore_data.asm"
 
 .segment "CODE"
 
