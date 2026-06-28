@@ -10,6 +10,13 @@
 .include "../data/space_data.asm"
 .include "../data/title_data.asm"
 .include "../data/demoncore_data.asm"
+.include "../data/intro_data.asm"
+.include "../data/shipselect_data.asm"
+.include "../data/level1_title_data.asm"
+.include "../data/level2_title_data.asm"
+.include "../data/level3_title_data.asm"
+.include "../data/level4_title_data.asm"
+.include "../data/ending_data.asm"
 
 .segment "CODE"
 
@@ -211,7 +218,7 @@ load_titlescreen_palettes:
 ; load_intro_static_scene
 ; --------------------------------------------------
 load_intro_static_scene:
-  lda #BANK_NUMBER_TITLE_SCREEN
+  lda #BANK_NUMBER_GENERIC
   sta BANK_SWITCH
 
   ldx PPUSTATUS
@@ -221,30 +228,30 @@ load_intro_static_scene:
   stx PPUADDR
 
 load_intro_scene_palettes:
-  lda TitleData::PaletteTable, x
+  lda IntroData::PaletteTable, x
   sta PPUDATA
   inx
   cpx #$20
   bne load_intro_scene_palettes
   
-  lda #<TitleData::Screen1
+  lda #<IntroData::Screen1
   sta layout_pointer
-  lda #>TitleData::Screen1
+  lda #>IntroData::Screen1
   sta layout_pointer+1
 
-  lda #<TitleData::MetatileTop
+  lda #<IntroData::MetatileTop
   sta metatile_top_pointer
-  lda #>TitleData::MetatileTop
+  lda #>IntroData::MetatileTop
   sta metatile_top_pointer+1
 
-  lda #<TitleData::MetatileBottom
+  lda #<IntroData::MetatileBottom
   sta metatile_bottom_pointer
-  lda #>TitleData::MetatileBottom
+  lda #>IntroData::MetatileBottom
   sta metatile_bottom_pointer+1
 
-  lda #<TitleData::Screen1Attrib
+  lda #<IntroData::Screen1Attrib
   sta attribs_pointer
-  lda #>TitleData::Screen1Attrib
+  lda #>IntroData::Screen1Attrib
   sta attribs_pointer+1
 
   jsr init_nametable
@@ -255,7 +262,7 @@ load_intro_scene_palettes:
 ; load_shipselect_static_scene
 ; --------------------------------------------------
 load_shipselect_static_scene:
-  lda #BANK_NUMBER_TITLE_SCREEN
+  lda #BANK_NUMBER_GENERIC
   sta BANK_SWITCH
 
   ldx PPUSTATUS
@@ -265,30 +272,30 @@ load_shipselect_static_scene:
   stx PPUADDR
 
 load_shipselect_scene_palettes:
-  lda TitleData::PaletteTable, x
+  lda ShipSelectData::PaletteTable, x
   sta PPUDATA
   inx
   cpx #$20
   bne load_shipselect_scene_palettes
   
-  lda #<TitleData::Screen1
+  lda #<ShipSelectData::Screen1
   sta layout_pointer
-  lda #>TitleData::Screen1
+  lda #>ShipSelectData::Screen1
   sta layout_pointer+1
 
-  lda #<TitleData::MetatileTop
+  lda #<ShipSelectData::MetatileTop
   sta metatile_top_pointer
-  lda #>TitleData::MetatileTop
+  lda #>ShipSelectData::MetatileTop
   sta metatile_top_pointer+1
 
-  lda #<TitleData::MetatileBottom
+  lda #<ShipSelectData::MetatileBottom
   sta metatile_bottom_pointer
-  lda #>TitleData::MetatileBottom
+  lda #>ShipSelectData::MetatileBottom
   sta metatile_bottom_pointer+1
 
-  lda #<TitleData::Screen1Attrib
+  lda #<ShipSelectData::Screen1Attrib
   sta attribs_pointer
-  lda #>TitleData::Screen1Attrib
+  lda #>ShipSelectData::Screen1Attrib
   sta attribs_pointer+1
 
   jsr init_nametable
@@ -299,7 +306,7 @@ load_shipselect_scene_palettes:
 ; load_level1title_static_scene
 ; --------------------------------------------------
 load_level1title_static_scene:
-  lda #BANK_NUMBER_TITLE_SCREEN
+  lda #BANK_NUMBER_GENERIC
   sta BANK_SWITCH
 
   ldx PPUSTATUS
@@ -315,24 +322,24 @@ load_level1_title_scene_palettes:
   cpx #$20
   bne load_level1_title_scene_palettes
   
-  lda #<TitleData::Screen1
+  lda #<Level1TitleData::Screen1
   sta layout_pointer
-  lda #>TitleData::Screen1
+  lda #>Level1TitleData::Screen1
   sta layout_pointer+1
 
-  lda #<TitleData::MetatileTop
+  lda #<Level1TitleData::MetatileTop
   sta metatile_top_pointer
-  lda #>TitleData::MetatileTop
+  lda #>Level1TitleData::MetatileTop
   sta metatile_top_pointer+1
 
-  lda #<TitleData::MetatileBottom
+  lda #<Level1TitleData::MetatileBottom
   sta metatile_bottom_pointer
-  lda #>TitleData::MetatileBottom
+  lda #>Level1TitleData::MetatileBottom
   sta metatile_bottom_pointer+1
 
-  lda #<TitleData::Screen1Attrib
+  lda #<Level1TitleData::Screen1Attrib
   sta attribs_pointer
-  lda #>TitleData::Screen1Attrib
+  lda #>Level1TitleData::Screen1Attrib
   sta attribs_pointer+1
 
   jsr init_nametable
@@ -531,7 +538,7 @@ load_level1boss_scene:
 ; load_level2title_static_scene
 ; --------------------------------------------------
 load_level2title_static_scene:
-  lda #BANK_NUMBER_TITLE_SCREEN
+  lda #BANK_NUMBER_GENERIC
   sta BANK_SWITCH
 
   ldx PPUSTATUS
@@ -541,30 +548,30 @@ load_level2title_static_scene:
   stx PPUADDR
 
 load_level2_title_scene_palettes:
-  lda TitleData::PaletteTable, x
+  lda Level2TitleData::PaletteTable, x
   sta PPUDATA
   inx
   cpx #$20
   bne load_level2_title_scene_palettes
   
-  lda #<TitleData::Screen1
+  lda #<Level2TitleData::Screen1
   sta layout_pointer
-  lda #>TitleData::Screen1
+  lda #>Level2TitleData::Screen1
   sta layout_pointer+1
 
-  lda #<TitleData::MetatileTop
+  lda #<Level2TitleData::MetatileTop
   sta metatile_top_pointer
-  lda #>TitleData::MetatileTop
+  lda #>Level2TitleData::MetatileTop
   sta metatile_top_pointer+1
 
-  lda #<TitleData::MetatileBottom
+  lda #<Level2TitleData::MetatileBottom
   sta metatile_bottom_pointer
-  lda #>TitleData::MetatileBottom
+  lda #>Level2TitleData::MetatileBottom
   sta metatile_bottom_pointer+1
 
-  lda #<TitleData::Screen1Attrib
+  lda #<Level2TitleData::Screen1Attrib
   sta attribs_pointer
-  lda #>TitleData::Screen1Attrib
+  lda #>Level2TitleData::Screen1Attrib
   sta attribs_pointer+1
 
   jsr init_nametable
@@ -763,7 +770,7 @@ load_level2boss_scene:
 ; load_level3title_static_scene
 ; --------------------------------------------------
 load_level3title_static_scene:
-  lda #BANK_NUMBER_TITLE_SCREEN
+  lda #BANK_NUMBER_GENERIC
   sta BANK_SWITCH
 
   ldx PPUSTATUS
@@ -773,30 +780,30 @@ load_level3title_static_scene:
   stx PPUADDR
 
 load_level3_title_scene_palettes:
-  lda TitleData::PaletteTable, x
+  lda Level3TitleData::PaletteTable, x
   sta PPUDATA
   inx
   cpx #$20
   bne load_level3_title_scene_palettes
   
-  lda #<TitleData::Screen1
+  lda #<Level3TitleData::Screen1
   sta layout_pointer
-  lda #>TitleData::Screen1
+  lda #>Level3TitleData::Screen1
   sta layout_pointer+1
 
-  lda #<TitleData::MetatileTop
+  lda #<Level3TitleData::MetatileTop
   sta metatile_top_pointer
-  lda #>TitleData::MetatileTop
+  lda #>Level3TitleData::MetatileTop
   sta metatile_top_pointer+1
 
-  lda #<TitleData::MetatileBottom
+  lda #<Level3TitleData::MetatileBottom
   sta metatile_bottom_pointer
-  lda #>TitleData::MetatileBottom
+  lda #>Level3TitleData::MetatileBottom
   sta metatile_bottom_pointer+1
 
-  lda #<TitleData::Screen1Attrib
+  lda #<Level3TitleData::Screen1Attrib
   sta attribs_pointer
-  lda #>TitleData::Screen1Attrib
+  lda #>Level3TitleData::Screen1Attrib
   sta attribs_pointer+1
 
   jsr init_nametable
@@ -995,7 +1002,7 @@ load_level3boss_scene:
 ; load_level4title_static_scene
 ; --------------------------------------------------
 load_level4title_static_scene:
-  lda #BANK_NUMBER_TITLE_SCREEN
+  lda #BANK_NUMBER_GENERIC
   sta BANK_SWITCH
 
   ldx PPUSTATUS
@@ -1005,30 +1012,30 @@ load_level4title_static_scene:
   stx PPUADDR
 
 load_level4_title_scene_palettes:
-  lda TitleData::PaletteTable, x
+  lda Level4TitleData::PaletteTable, x
   sta PPUDATA
   inx
   cpx #$20
   bne load_level4_title_scene_palettes
   
-  lda #<TitleData::Screen1
+  lda #<Level4TitleData::Screen1
   sta layout_pointer
-  lda #>TitleData::Screen1
+  lda #>Level4TitleData::Screen1
   sta layout_pointer+1
 
-  lda #<TitleData::MetatileTop
+  lda #<Level4TitleData::MetatileTop
   sta metatile_top_pointer
-  lda #>TitleData::MetatileTop
+  lda #>Level4TitleData::MetatileTop
   sta metatile_top_pointer+1
 
-  lda #<TitleData::MetatileBottom
+  lda #<Level4TitleData::MetatileBottom
   sta metatile_bottom_pointer
-  lda #>TitleData::MetatileBottom
+  lda #>Level4TitleData::MetatileBottom
   sta metatile_bottom_pointer+1
 
-  lda #<TitleData::Screen1Attrib
+  lda #<Level4TitleData::Screen1Attrib
   sta attribs_pointer
-  lda #>TitleData::Screen1Attrib
+  lda #>Level4TitleData::Screen1Attrib
   sta attribs_pointer+1
 
   jsr init_nametable
@@ -1227,7 +1234,7 @@ load_level4boss_scene:
 ; load_ending_static_scene
 ; --------------------------------------------------
 load_ending_static_scene:
-  lda #BANK_NUMBER_TITLE_SCREEN
+  lda #BANK_NUMBER_GENERIC
   sta BANK_SWITCH
 
   ldx PPUSTATUS
@@ -1237,30 +1244,30 @@ load_ending_static_scene:
   stx PPUADDR
 
 load_ending_scene_palettes:
-  lda TitleData::PaletteTable, x
+  lda EndingData::PaletteTable, x
   sta PPUDATA
   inx
   cpx #$20
   bne load_ending_scene_palettes
   
-  lda #<TitleData::Screen1
+  lda #<EndingData::Screen1
   sta layout_pointer
-  lda #>TitleData::Screen1
+  lda #>EndingData::Screen1
   sta layout_pointer+1
 
-  lda #<TitleData::MetatileTop
+  lda #<EndingData::MetatileTop
   sta metatile_top_pointer
-  lda #>TitleData::MetatileTop
+  lda #>EndingData::MetatileTop
   sta metatile_top_pointer+1
 
-  lda #<TitleData::MetatileBottom
+  lda #<EndingData::MetatileBottom
   sta metatile_bottom_pointer
-  lda #>TitleData::MetatileBottom
+  lda #>EndingData::MetatileBottom
   sta metatile_bottom_pointer+1
 
-  lda #<TitleData::Screen1Attrib
+  lda #<EndingData::Screen1Attrib
   sta attribs_pointer
-  lda #>TitleData::Screen1Attrib
+  lda #>EndingData::Screen1Attrib
   sta attribs_pointer+1
 
   jsr init_nametable
