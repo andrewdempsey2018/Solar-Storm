@@ -7,6 +7,9 @@
 ; 'metatile_bottom_pointer' should point at bottom left and bottom right tiles for metatiles
 ; 'attribs_pointer' should point at relevant attributes
 
+; init nametable needs:
+; nametable_number, layout_pointer, metatile_top_pointer, metatile_bottom_pointer, attribs_pointer
+
 .proc init_nametable
   SAVE_REGISTERS
 

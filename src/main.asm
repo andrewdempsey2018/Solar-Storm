@@ -11,7 +11,7 @@
 .include "placeholder_data.asm"
 .include "title_data.asm"
 .include "init_nametable.asm"
-.include "debug.asm"
+.include "load_levels.asm"
 
 .segment "ZEROPAGE"
 sleeping: .res 1
@@ -197,7 +197,16 @@ next_row_is_prepared:
 
   jsr read_controller
 
-  jsr debug
+; --------------------------------------------------
+; For debug purposes.
+; Load levels by pressing enter.
+; --------------------------------------------------
+  jsr load_beach
+  ;jsr load_station
+
+; --------------------------------------------------
+; 
+; --------------------------------------------------
 
 done:
   inc sleeping

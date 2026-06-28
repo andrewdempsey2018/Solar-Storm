@@ -20,6 +20,12 @@
 ; 'metatile_bottom_pointer' should point at bottom left and bottom right tiles for metatiles
 ; 'attribs_pointer' should point at relevant attributes
 
+
+; load row needs:
+; scroll_y, nametable_number, metatile_row_number, attrib_data to be set, row_data to be set
+; load attributes needs:
+; metatile_row_number, screen_counter
+
 .proc load_row
   SAVE_REGISTERS
 
