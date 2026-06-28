@@ -194,10 +194,13 @@ next_row_is_prepared:
 
 ; --------------------------------------------------
 ; For debug purposes.
-; Load levels by pressing enter.
+; Load levels by pressing start
 ; --------------------------------------------------
-  jsr load_beach
-  ;jsr load_station
+  lda buttons_pressed
+  and #BTN_START
+  beq :+
+  jsr load_levels
+:
 
 ; --------------------------------------------------
 ; 
