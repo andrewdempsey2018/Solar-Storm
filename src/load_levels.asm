@@ -590,33 +590,33 @@ load_level2_gameplay_scene:
 
   ldx #$00
 @load_palette:
-  lda BeachData::PaletteTable, x
+  lda StationData::PaletteTable, x
   sta PPUDATA
   inx
   cpx #$20
   bne @load_palette
 
-  lda #BANK_NUMBER_BEACH
+  lda #BANK_NUMBER_STATION
   sta BANK_SWITCH
 
-  lda #<BeachData::ScreenX
+  lda #<StationData::Screen1
   sta layout_pointer
-  lda #>BeachData::ScreenX
+  lda #>StationData::Screen1
   sta layout_pointer+1
 
-  lda #<BeachData::MetatileTop
+  lda #<StationData::MetatileTop
   sta metatile_top_pointer
-  lda #>BeachData::MetatileTop
+  lda #>StationData::MetatileTop
   sta metatile_top_pointer+1
 
-  lda #<BeachData::MetatileBottom
+  lda #<StationData::MetatileBottom
   sta metatile_bottom_pointer
-  lda #>BeachData::MetatileBottom
+  lda #>StationData::MetatileBottom
   sta metatile_bottom_pointer+1
 
-  lda #<BeachData::ScreenXAttrib
+  lda #<StationData::Screen1Attrib
   sta attribs_pointer
-  lda #>BeachData::ScreenXAttrib
+  lda #>StationData::Screen1Attrib
   sta attribs_pointer+1
 
   lda #0
@@ -627,40 +627,40 @@ load_level2_gameplay_scene:
   sta nametable_number
   jsr init_nametable
 
-  lda #<BeachData::Screen1
+  lda #<StationData::Screen1
   sta layout_pointer
-  lda #>BeachData::Screen1
+  lda #>StationData::Screen1
   sta layout_pointer+1
 
-  lda #<BeachData::MetatileTop
+  lda #<StationData::MetatileTop
   sta metatile_top_pointer
-  lda #>BeachData::MetatileTop
+  lda #>StationData::MetatileTop
   sta metatile_top_pointer+1
 
-  lda #<BeachData::MetatileBottom
+  lda #<StationData::MetatileBottom
   sta metatile_bottom_pointer
-  lda #>BeachData::MetatileBottom
+  lda #>StationData::MetatileBottom
   sta metatile_bottom_pointer+1
 
 
-  lda #<BeachData::ScreensLow
+  lda #<StationData::ScreensLow
   sta screens_lo_pointer
-  lda #>BeachData::ScreensLow
+  lda #>StationData::ScreensLow
   sta screens_lo_pointer+1
 
-  lda #<BeachData::ScreensHigh
+  lda #<StationData::ScreensHigh
   sta screens_hi_pointer
-  lda #>BeachData::ScreensHigh
+  lda #>StationData::ScreensHigh
   sta screens_hi_pointer+1
 
-  lda #<BeachData::AttribsLow
+  lda #<StationData::AttribsLow
   sta attribs_lo_pointer
-  lda #>BeachData::AttribsLow
+  lda #>StationData::AttribsLow
   sta attribs_lo_pointer+1
 
-  lda #<BeachData::AttribsHigh
+  lda #<StationData::AttribsHigh
   sta attribs_hi_pointer
-  lda #>BeachData::AttribsHigh
+  lda #>StationData::AttribsHigh
   sta attribs_hi_pointer+1
 
   ldy #$00
@@ -684,33 +684,33 @@ load_level2boss_scene:
 
   ldx #$00
 @load_palette:
-  lda BeachData::PaletteTable, x
+  lda StationData::PaletteTable, x
   sta PPUDATA
   inx
   cpx #$20
   bne @load_palette
 
-  lda #BANK_NUMBER_BEACH
+  lda #BANK_NUMBER_STATION
   sta BANK_SWITCH
 
-  lda #<BeachData::ScreenX
+  lda #<StationData::Screen1
   sta layout_pointer
-  lda #>BeachData::ScreenX
+  lda #>StationData::Screen1
   sta layout_pointer+1
 
-  lda #<BeachData::MetatileTop
+  lda #<StationData::MetatileTop
   sta metatile_top_pointer
-  lda #>BeachData::MetatileTop
+  lda #>StationData::MetatileTop
   sta metatile_top_pointer+1
 
-  lda #<BeachData::MetatileBottom
+  lda #<StationData::MetatileBottom
   sta metatile_bottom_pointer
-  lda #>BeachData::MetatileBottom
+  lda #>StationData::MetatileBottom
   sta metatile_bottom_pointer+1
 
-  lda #<BeachData::ScreenXAttrib
+  lda #<StationData::Screen1Attrib
   sta attribs_pointer
-  lda #>BeachData::ScreenXAttrib
+  lda #>StationData::Screen1Attrib
   sta attribs_pointer+1
 
   lda #0
@@ -721,40 +721,40 @@ load_level2boss_scene:
   sta nametable_number
   jsr init_nametable
 
-  lda #<BeachData::Screen1
+  lda #<StationData::Screen1
   sta layout_pointer
-  lda #>BeachData::Screen1
+  lda #>StationData::Screen1
   sta layout_pointer+1
 
-  lda #<BeachData::MetatileTop
+  lda #<StationData::MetatileTop
   sta metatile_top_pointer
-  lda #>BeachData::MetatileTop
+  lda #>StationData::MetatileTop
   sta metatile_top_pointer+1
 
-  lda #<BeachData::MetatileBottom
+  lda #<StationData::MetatileBottom
   sta metatile_bottom_pointer
-  lda #>BeachData::MetatileBottom
+  lda #>StationData::MetatileBottom
   sta metatile_bottom_pointer+1
 
 
-  lda #<BeachData::ScreensLow
+  lda #<StationData::ScreensLow
   sta screens_lo_pointer
-  lda #>BeachData::ScreensLow
+  lda #>StationData::ScreensLow
   sta screens_lo_pointer+1
 
-  lda #<BeachData::ScreensHigh
+  lda #<StationData::ScreensHigh
   sta screens_hi_pointer
-  lda #>BeachData::ScreensHigh
+  lda #>StationData::ScreensHigh
   sta screens_hi_pointer+1
 
-  lda #<BeachData::AttribsLow
+  lda #<StationData::AttribsLow
   sta attribs_lo_pointer
-  lda #>BeachData::AttribsLow
+  lda #>StationData::AttribsLow
   sta attribs_lo_pointer+1
 
-  lda #<BeachData::AttribsHigh
+  lda #<StationData::AttribsHigh
   sta attribs_hi_pointer
-  lda #>BeachData::AttribsHigh
+  lda #>StationData::AttribsHigh
   sta attribs_hi_pointer+1
 
   ldy #$00
@@ -822,33 +822,33 @@ load_level3_gameplay_scene:
 
   ldx #$00
 @load_palette:
-  lda BeachData::PaletteTable, x
+  lda CeresData::PaletteTable, x
   sta PPUDATA
   inx
   cpx #$20
   bne @load_palette
 
-  lda #BANK_NUMBER_BEACH
+  lda #BANK_NUMBER_CERES
   sta BANK_SWITCH
 
-  lda #<BeachData::ScreenX
+  lda #<CeresData::Screen1
   sta layout_pointer
-  lda #>BeachData::ScreenX
+  lda #>CeresData::Screen1
   sta layout_pointer+1
 
-  lda #<BeachData::MetatileTop
+  lda #<CeresData::MetatileTop
   sta metatile_top_pointer
-  lda #>BeachData::MetatileTop
+  lda #>CeresData::MetatileTop
   sta metatile_top_pointer+1
 
-  lda #<BeachData::MetatileBottom
+  lda #<CeresData::MetatileBottom
   sta metatile_bottom_pointer
-  lda #>BeachData::MetatileBottom
+  lda #>CeresData::MetatileBottom
   sta metatile_bottom_pointer+1
 
-  lda #<BeachData::ScreenXAttrib
+  lda #<CeresData::Screen1Attrib
   sta attribs_pointer
-  lda #>BeachData::ScreenXAttrib
+  lda #>CeresData::Screen1Attrib
   sta attribs_pointer+1
 
   lda #0
@@ -859,40 +859,40 @@ load_level3_gameplay_scene:
   sta nametable_number
   jsr init_nametable
 
-  lda #<BeachData::Screen1
+  lda #<CeresData::Screen1
   sta layout_pointer
-  lda #>BeachData::Screen1
+  lda #>CeresData::Screen1
   sta layout_pointer+1
 
-  lda #<BeachData::MetatileTop
+  lda #<CeresData::MetatileTop
   sta metatile_top_pointer
-  lda #>BeachData::MetatileTop
+  lda #>CeresData::MetatileTop
   sta metatile_top_pointer+1
 
-  lda #<BeachData::MetatileBottom
+  lda #<CeresData::MetatileBottom
   sta metatile_bottom_pointer
-  lda #>BeachData::MetatileBottom
+  lda #>CeresData::MetatileBottom
   sta metatile_bottom_pointer+1
 
 
-  lda #<BeachData::ScreensLow
+  lda #<CeresData::ScreensLow
   sta screens_lo_pointer
-  lda #>BeachData::ScreensLow
+  lda #>CeresData::ScreensLow
   sta screens_lo_pointer+1
 
-  lda #<BeachData::ScreensHigh
+  lda #<CeresData::ScreensHigh
   sta screens_hi_pointer
-  lda #>BeachData::ScreensHigh
+  lda #>CeresData::ScreensHigh
   sta screens_hi_pointer+1
 
-  lda #<BeachData::AttribsLow
+  lda #<CeresData::AttribsLow
   sta attribs_lo_pointer
-  lda #>BeachData::AttribsLow
+  lda #>CeresData::AttribsLow
   sta attribs_lo_pointer+1
 
-  lda #<BeachData::AttribsHigh
+  lda #<CeresData::AttribsHigh
   sta attribs_hi_pointer
-  lda #>BeachData::AttribsHigh
+  lda #>CeresData::AttribsHigh
   sta attribs_hi_pointer+1
 
   ldy #$00
@@ -916,33 +916,33 @@ load_level3boss_scene:
 
   ldx #$00
 @load_palette:
-  lda BeachData::PaletteTable, x
+  lda CeresData::PaletteTable, x
   sta PPUDATA
   inx
   cpx #$20
   bne @load_palette
 
-  lda #BANK_NUMBER_BEACH
+  lda #BANK_NUMBER_CERES
   sta BANK_SWITCH
 
-  lda #<BeachData::ScreenX
+  lda #<CeresData::Screen1
   sta layout_pointer
-  lda #>BeachData::ScreenX
+  lda #>CeresData::Screen1
   sta layout_pointer+1
 
-  lda #<BeachData::MetatileTop
+  lda #<CeresData::MetatileTop
   sta metatile_top_pointer
-  lda #>BeachData::MetatileTop
+  lda #>CeresData::MetatileTop
   sta metatile_top_pointer+1
 
-  lda #<BeachData::MetatileBottom
+  lda #<CeresData::MetatileBottom
   sta metatile_bottom_pointer
-  lda #>BeachData::MetatileBottom
+  lda #>CeresData::MetatileBottom
   sta metatile_bottom_pointer+1
 
-  lda #<BeachData::ScreenXAttrib
+  lda #<CeresData::Screen1Attrib
   sta attribs_pointer
-  lda #>BeachData::ScreenXAttrib
+  lda #>CeresData::Screen1Attrib
   sta attribs_pointer+1
 
   lda #0
@@ -953,40 +953,40 @@ load_level3boss_scene:
   sta nametable_number
   jsr init_nametable
 
-  lda #<BeachData::Screen1
+  lda #<CeresData::Screen1
   sta layout_pointer
-  lda #>BeachData::Screen1
+  lda #>CeresData::Screen1
   sta layout_pointer+1
 
-  lda #<BeachData::MetatileTop
+  lda #<CeresData::MetatileTop
   sta metatile_top_pointer
-  lda #>BeachData::MetatileTop
+  lda #>CeresData::MetatileTop
   sta metatile_top_pointer+1
 
-  lda #<BeachData::MetatileBottom
+  lda #<CeresData::MetatileBottom
   sta metatile_bottom_pointer
-  lda #>BeachData::MetatileBottom
+  lda #>CeresData::MetatileBottom
   sta metatile_bottom_pointer+1
 
 
-  lda #<BeachData::ScreensLow
+  lda #<CeresData::ScreensLow
   sta screens_lo_pointer
-  lda #>BeachData::ScreensLow
+  lda #>CeresData::ScreensLow
   sta screens_lo_pointer+1
 
-  lda #<BeachData::ScreensHigh
+  lda #<CeresData::ScreensHigh
   sta screens_hi_pointer
-  lda #>BeachData::ScreensHigh
+  lda #>CeresData::ScreensHigh
   sta screens_hi_pointer+1
 
-  lda #<BeachData::AttribsLow
+  lda #<CeresData::AttribsLow
   sta attribs_lo_pointer
-  lda #>BeachData::AttribsLow
+  lda #>CeresData::AttribsLow
   sta attribs_lo_pointer+1
 
-  lda #<BeachData::AttribsHigh
+  lda #<CeresData::AttribsHigh
   sta attribs_hi_pointer
-  lda #>BeachData::AttribsHigh
+  lda #>CeresData::AttribsHigh
   sta attribs_hi_pointer+1
 
   ldy #$00
@@ -1054,33 +1054,33 @@ load_level4_gameplay_scene:
 
   ldx #$00
 @load_palette:
-  lda BeachData::PaletteTable, x
+  lda SpaceData::PaletteTable, x
   sta PPUDATA
   inx
   cpx #$20
   bne @load_palette
 
-  lda #BANK_NUMBER_BEACH
+  lda #BANK_NUMBER_SPACE
   sta BANK_SWITCH
 
-  lda #<BeachData::ScreenX
+  lda #<SpaceData::Screen1
   sta layout_pointer
-  lda #>BeachData::ScreenX
+  lda #>SpaceData::Screen1
   sta layout_pointer+1
 
-  lda #<BeachData::MetatileTop
+  lda #<SpaceData::MetatileTop
   sta metatile_top_pointer
-  lda #>BeachData::MetatileTop
+  lda #>SpaceData::MetatileTop
   sta metatile_top_pointer+1
 
-  lda #<BeachData::MetatileBottom
+  lda #<SpaceData::MetatileBottom
   sta metatile_bottom_pointer
-  lda #>BeachData::MetatileBottom
+  lda #>SpaceData::MetatileBottom
   sta metatile_bottom_pointer+1
 
-  lda #<BeachData::ScreenXAttrib
+  lda #<SpaceData::Screen1Attrib
   sta attribs_pointer
-  lda #>BeachData::ScreenXAttrib
+  lda #>SpaceData::Screen1Attrib
   sta attribs_pointer+1
 
   lda #0
@@ -1091,40 +1091,40 @@ load_level4_gameplay_scene:
   sta nametable_number
   jsr init_nametable
 
-  lda #<BeachData::Screen1
+  lda #<SpaceData::Screen1
   sta layout_pointer
-  lda #>BeachData::Screen1
+  lda #>SpaceData::Screen1
   sta layout_pointer+1
 
-  lda #<BeachData::MetatileTop
+  lda #<SpaceData::MetatileTop
   sta metatile_top_pointer
-  lda #>BeachData::MetatileTop
+  lda #>SpaceData::MetatileTop
   sta metatile_top_pointer+1
 
-  lda #<BeachData::MetatileBottom
+  lda #<SpaceData::MetatileBottom
   sta metatile_bottom_pointer
-  lda #>BeachData::MetatileBottom
+  lda #>SpaceData::MetatileBottom
   sta metatile_bottom_pointer+1
 
 
-  lda #<BeachData::ScreensLow
+  lda #<SpaceData::ScreensLow
   sta screens_lo_pointer
-  lda #>BeachData::ScreensLow
+  lda #>SpaceData::ScreensLow
   sta screens_lo_pointer+1
 
-  lda #<BeachData::ScreensHigh
+  lda #<SpaceData::ScreensHigh
   sta screens_hi_pointer
-  lda #>BeachData::ScreensHigh
+  lda #>SpaceData::ScreensHigh
   sta screens_hi_pointer+1
 
-  lda #<BeachData::AttribsLow
+  lda #<SpaceData::AttribsLow
   sta attribs_lo_pointer
-  lda #>BeachData::AttribsLow
+  lda #>SpaceData::AttribsLow
   sta attribs_lo_pointer+1
 
-  lda #<BeachData::AttribsHigh
+  lda #<SpaceData::AttribsHigh
   sta attribs_hi_pointer
-  lda #>BeachData::AttribsHigh
+  lda #>SpaceData::AttribsHigh
   sta attribs_hi_pointer+1
 
   ldy #$00
@@ -1148,33 +1148,33 @@ load_level4boss_scene:
 
   ldx #$00
 @load_palette:
-  lda BeachData::PaletteTable, x
+  lda SpaceData::PaletteTable, x
   sta PPUDATA
   inx
   cpx #$20
   bne @load_palette
 
-  lda #BANK_NUMBER_BEACH
+  lda #BANK_NUMBER_SPACE
   sta BANK_SWITCH
 
-  lda #<BeachData::ScreenX
+  lda #<SpaceData::Screen1
   sta layout_pointer
-  lda #>BeachData::ScreenX
+  lda #>SpaceData::Screen1
   sta layout_pointer+1
 
-  lda #<BeachData::MetatileTop
+  lda #<SpaceData::MetatileTop
   sta metatile_top_pointer
-  lda #>BeachData::MetatileTop
+  lda #>SpaceData::MetatileTop
   sta metatile_top_pointer+1
 
-  lda #<BeachData::MetatileBottom
+  lda #<SpaceData::MetatileBottom
   sta metatile_bottom_pointer
-  lda #>BeachData::MetatileBottom
+  lda #>SpaceData::MetatileBottom
   sta metatile_bottom_pointer+1
 
-  lda #<BeachData::ScreenXAttrib
+  lda #<SpaceData::Screen1Attrib
   sta attribs_pointer
-  lda #>BeachData::ScreenXAttrib
+  lda #>SpaceData::Screen1Attrib
   sta attribs_pointer+1
 
   lda #0
@@ -1185,40 +1185,40 @@ load_level4boss_scene:
   sta nametable_number
   jsr init_nametable
 
-  lda #<BeachData::Screen1
+  lda #<SpaceData::Screen1
   sta layout_pointer
-  lda #>BeachData::Screen1
+  lda #>SpaceData::Screen1
   sta layout_pointer+1
 
-  lda #<BeachData::MetatileTop
+  lda #<SpaceData::MetatileTop
   sta metatile_top_pointer
-  lda #>BeachData::MetatileTop
+  lda #>SpaceData::MetatileTop
   sta metatile_top_pointer+1
 
-  lda #<BeachData::MetatileBottom
+  lda #<SpaceData::MetatileBottom
   sta metatile_bottom_pointer
-  lda #>BeachData::MetatileBottom
+  lda #>SpaceData::MetatileBottom
   sta metatile_bottom_pointer+1
 
 
-  lda #<BeachData::ScreensLow
+  lda #<SpaceData::ScreensLow
   sta screens_lo_pointer
-  lda #>BeachData::ScreensLow
+  lda #>SpaceData::ScreensLow
   sta screens_lo_pointer+1
 
-  lda #<BeachData::ScreensHigh
+  lda #<SpaceData::ScreensHigh
   sta screens_hi_pointer
-  lda #>BeachData::ScreensHigh
+  lda #>SpaceData::ScreensHigh
   sta screens_hi_pointer+1
 
-  lda #<BeachData::AttribsLow
+  lda #<SpaceData::AttribsLow
   sta attribs_lo_pointer
-  lda #>BeachData::AttribsLow
+  lda #>SpaceData::AttribsLow
   sta attribs_lo_pointer+1
 
-  lda #<BeachData::AttribsHigh
+  lda #<SpaceData::AttribsHigh
   sta attribs_hi_pointer
-  lda #>BeachData::AttribsHigh
+  lda #>SpaceData::AttribsHigh
   sta attribs_hi_pointer+1
 
   ldy #$00
