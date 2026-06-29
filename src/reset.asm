@@ -69,6 +69,11 @@ clear_oam:
   sta attribs_pointer
   sta attribs_pointer+1
 
+  sta player_x
+  sta player_y
+  sta player_frame
+  sta player_flame_frame
+
 ; --------------------------------------------------
 ; clear BSS memory.
 ; --------------------------------------------------

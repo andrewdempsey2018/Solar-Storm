@@ -13,6 +13,7 @@
 sleeping: .res 1
 buttons_held: .res 1
 buttons_pressed: .res 1
+timer: .res 1
 
 nametable_number: .res 1
 row_address: .res 2
@@ -64,6 +65,12 @@ scene_number: .res 1
   lda #$02
   sta OAMDMA
   lda #$00
+
+; --------------------------------------------------
+; Timer - general purpose, used to trigger a variety 
+; of events
+; --------------------------------------------------
+  inc timer
 
   lda do_scroll
   cmp #$01
@@ -187,8 +194,8 @@ load_demoncore_screen_palettes:
 
 mainloop:
 
-  jsr move_sprite
-  jsr draw_sprite
+  jsr move_player
+  jsr draw_player
 
   lda prep_next_row
   beq next_row_is_prepared
