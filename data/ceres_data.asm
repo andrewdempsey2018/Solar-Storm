@@ -158,15 +158,16 @@ AttribsHigh:
   .byte >Screen1Attrib,>Screen2Attrib,>Screen3Attrib,>Screen4Attrib,>Screen1Attrib,>Screen2Attrib,>Screen3Attrib,>Screen4Attrib,>Screen1Attrib,>Screen2Attrib,>Screen3Attrib,>Screen4Attrib,>Screen5Attrib
   .byte >Screen1Attrib,>Screen2Attrib,>Screen3Attrib,>Screen4Attrib,>Screen1Attrib,>Screen2Attrib,>Screen3Attrib,>Screen4Attrib,>Screen1Attrib,>Screen2Attrib,>Screen3Attrib,>Screen4Attrib,>Screen5Attrib
 
-PaletteTable:
-.byte $0F,$00,$10,$30 ; bg
-.byte $0F,$01,$21,$31
-.byte $0F,$06,$16,$26
-.byte $0F,$09,$19,$29
 
-.byte $0F,$00,$10,$30 ; sprite
-.byte $0F,$01,$21,$31
-.byte $0F,$06,$16,$26
-.byte $0F,$09,$19,$29
+PaletteTable:
+  .byte $0F,$00,$10,$30
+  .byte $0F,$01,$21,$31
+  .byte $0F,$06,$16,$26
+  .byte $0F,$09,$19,$29
+
+  .byte $0F,$00,$10,$30
+  .byte $0F,$01,$21,$31
+  .byte $0F,$06,$16,$26
+  .byte $0F,$26,$27,$38
 
 .endscope
