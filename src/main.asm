@@ -8,6 +8,7 @@
 .include "init_nametable.asm"
 .include "load_levels.asm"
 .include "player.asm"
+.include "enemies.asm"
 
 .segment "ZEROPAGE"
 sleeping: .res 1
@@ -30,6 +31,8 @@ metatile_row_number: .res 1
 zp_scratch_0: .res 1
 zp_scratch_1: .res 2
 zp_scratch_02: .res 1
+zp_scratch_1_lo = zp_scratch_1
+zp_scratch_1_hi = zp_scratch_1+1
 
 do_render: .res 1
 do_scroll: .res 1
@@ -194,6 +197,49 @@ load_demoncore_screen_palettes:
 
 mainloop:
 
+; --------------------------------------------------
+; Spawing enemies
+; Read the general purpose timer. Every 32 frames decrement
+; the enemy_spawn_wait time
+;
+; Begin spawn procedure when enemy_spawn_wait=0
+; set x to the number of enemies to spawn
+; set enemy_spawn_wait to the time desired to wait for next spawn
+; --------------------------------------------------
+  lda timer
+  and #%00011111
+  bne skip_spawn_wait_decrement
+  dec enemy_spawn_wait
+skip_spawn_wait_decrement:
+
+  lda enemy_spawn_wait
+  bne dont_spawn
+
+  inc enemy_spawn_script
+  lda enemy_spawn_script
+  tay
+  lda spawn_enemy_qty_table, y
+  tax
+
+  lda spawn_enemy_wait_table, y
+  sta enemy_spawn_wait
+
+spawn:
+  jsr SpawnEnemy
+  dex
+  cpx #$00
+  bne spawn
+
+dont_spawn:
+
+; --------------------------------------------------
+; process enemies
+; --------------------------------------------------
+  jsr ProcessEnemeies
+
+; --------------------------------------------------
+; 
+; --------------------------------------------------
   jsr move_player
   jsr draw_player
 

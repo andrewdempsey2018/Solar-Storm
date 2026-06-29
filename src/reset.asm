@@ -69,10 +69,13 @@ clear_oam:
   sta attribs_pointer
   sta attribs_pointer+1
 
-  sta player_x
-  sta player_y
   sta player_frame
   sta player_flame_frame
+  
+  lda #120
+  sta player_x
+  lda #206
+  sta player_y
 
 ; --------------------------------------------------
 ; clear BSS memory.
@@ -96,6 +99,30 @@ clear_attrib_data:
 
   lda #$00
   sta scene_number
+
+  lda #$00
+  ldx #$00
+ClearEnemyData:
+  sta enemy_x_hi, x
+  sta enemy_x_lo, x
+  sta enemy_y_hi, x
+  sta enemy_y_hi, x
+  sta enemy_type, x
+  sta enemy_flags, x
+  sta enemy_path, x
+  sta enemy_path_index, x
+  sta enemy_frame_number, x
+  inx
+  cpx #NUMBER_OF_ENEMIES
+  bne ClearEnemyData
+
+  lda #$00
+  sta current_enemy
+  sta enemy_spawn_number
+  sta enemy_spawn_index
+  sta enemy_spawn_wait
+  sta enemy_spawn_script
+  sta enemy_frame_to_draw
 
 ; --------------------------------------------------
 ; Finished clearing memory, vblank wait then go to game.
