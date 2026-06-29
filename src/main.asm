@@ -7,6 +7,7 @@
 .include "ClearOAM.asm"
 .include "init_nametable.asm"
 .include "load_levels.asm"
+.include "player.asm"
 
 .segment "ZEROPAGE"
 sleeping: .res 1
@@ -185,6 +186,9 @@ load_demoncore_screen_palettes:
   WAIT_VBLANK
 
 mainloop:
+
+  jsr move_sprite
+  jsr draw_sprite
 
   lda prep_next_row
   beq next_row_is_prepared
