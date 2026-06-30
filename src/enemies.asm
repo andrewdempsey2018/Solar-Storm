@@ -85,7 +85,7 @@ loop:
   jsr UpdateEnemies
 next:
   inx
-  cpx #$05
+  cpx #NUMBER_OF_ENEMIES
   bne loop
 
   RESTORE_REGISTERS

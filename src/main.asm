@@ -9,6 +9,7 @@
 .include "load_levels.asm"
 .include "player.asm"
 .include "enemies.asm"
+.include "player_bullets.asm"
 
 .segment "ZEROPAGE"
 sleeping: .res 1
@@ -236,6 +237,12 @@ dont_spawn:
 ; process enemies
 ; --------------------------------------------------
   jsr ProcessEnemeies
+
+; --------------------------------------------------
+; 
+; --------------------------------------------------
+  jsr ProcessPlayerBullets
+  jsr ShootPlayerBullets
 
 ; --------------------------------------------------
 ; 
