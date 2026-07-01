@@ -78,9 +78,25 @@ clear_oam:
   sta player_y
 
 ; --------------------------------------------------
+; Clear memory related to player bullets
+; --------------------------------------------------
+  lda #$00
+  ldx #$00
+clear_bullet_loop:
+  sta player_bullet_x
+  sta player_bullet_y
+  sta player_bullet_flags
+  sta player_bullet_frame_number
+  inx
+  cpx #NUMBER_OF_PLAYER_BULLETS
+  bne clear_bullet_loop
+
+  sta current_player_bullet
+  sta player_bullet_spawn_number
+
+; --------------------------------------------------
 ; clear BSS memory.
 ; --------------------------------------------------
-
   lda #0
 
   ldx #0

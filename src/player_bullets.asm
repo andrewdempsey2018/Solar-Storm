@@ -27,8 +27,6 @@ PLAYER_BULLET_FLAG_0 = %00000001
 ; player_bullet_x, player_bullet_y position coordinates
 ; of bullet.
 
-; player_bullet_type - the sprite of the bullet
-
 ; player_bullet_flags currently holds alive or dead, 
 ; use for other attributes as needed.
 
@@ -37,7 +35,6 @@ PLAYER_BULLET_FLAG_0 = %00000001
 ; --------------------------------------------------
 player_bullet_x: .res NUMBER_OF_PLAYER_BULLETS
 player_bullet_y: .res NUMBER_OF_PLAYER_BULLETS
-player_bullet_type: .res NUMBER_OF_PLAYER_BULLETS
 player_bullet_flags: .res NUMBER_OF_PLAYER_BULLETS
 player_bullet_frame_number: .res NUMBER_OF_PLAYER_BULLETS
 
@@ -45,15 +42,11 @@ player_bullet_frame_number: .res NUMBER_OF_PLAYER_BULLETS
 ; current_player_bullet - this is the bullet that gets
 ; processed and updated during a loop.
 
-; player_bullet_frame_to_draw - animation tile that
-; will be drawn.
-
 ; player_bullet_spawn_number - the bullet number that
 ; will be spawned.
 ; --------------------------------------------------
 current_player_bullet: .res 1
 player_bullet_spawn_number: .res 1
-player_bullet_frame_to_draw: .res 1
 
 .segment "RODATA"
 ;.include "../data/player_bullet_data.asm"
@@ -100,10 +93,12 @@ player_bullet_alive:
   lda player_bullet_y, x
   cmp #8
   bcs bullet_on_screen
+; move bullet off screen and set it inactive
   lda #PLAYER_BULLET_DEAD
   sta player_bullet_flags, x
   lda #$F0
   sta player_bullet_y, x
+; still need to draw inactive bullet to clear OAM
   jsr DrawPlayerBullets
   jmp done
 bullet_on_screen:
@@ -129,11 +124,13 @@ done:
 .proc DrawPlayerBullets
   SAVE_REGISTERS
 
+; x is the current bulley
+; y is the particular OAM slot for that bullet
   lda current_player_bullet
-  tax ; x indexes the..
+  tax
   asl a
   asl a
-  tay ; multiply by 4 to get oam
+  tay
 
   lda player_bullet_y, x
   sta PLAYER_BULLET_OAM_START, y
