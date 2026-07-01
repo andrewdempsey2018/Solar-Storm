@@ -5,6 +5,8 @@
 ; --------------------------------------------------
 PLAYER_BULLET_OAM_START = $0268
 NUMBER_OF_PLAYER_BULLETS = 5
+BULLET_1_WIDTH = 8
+BULLET_1_HEIGHT = 8
 
 ; --------------------------------------------------
 ; Player bullet flags.
@@ -112,6 +114,11 @@ bullet_on_screen:
   sta player_bullet_y, x
 
 ; --------------------------------------------------
+; Check if bullet has collided with an enemy
+; --------------------------------------------------
+  jsr DetectCollision
+
+; --------------------------------------------------
 ; Updates done, now draw
 ; --------------------------------------------------
   jsr DrawPlayerBullets
@@ -184,6 +191,87 @@ shoot_bullet:
   ;jsr FamiToneSfxPlay
 
 done:
+  RESTORE_REGISTERS
+  rts
+.endproc
+
+.proc DetectCollision
+  SAVE_REGISTERS
+
+  ldy current_player_bullet
+
+  ldx #$00 ;use y for indexing the bullet positions
+
+  ;is bullet active?
+  lda player_bullet_flags, y
+  and #%10000000 ; bullet flag is %00000000 go to done bullet flag is %10000000 update position
+  beq NoCollision
+
+check:
+; Check if A is to the left of B
+  lda player_bullet_x, y
+  clc
+  adc #BULLET_1_WIDTH
+  cmp enemy_x_hi, x
+  bcc NoCollision  ; A is to the left of B
+
+; Check if A is to the right of B
+  lda enemy_x_hi, x
+  clc
+  adc #ENEMY_WIDTH
+  cmp player_bullet_x, y
+  bcc NoCollision  ; A is to the right of B
+
+; Check if A is above B
+  lda player_bullet_y, y
+  clc
+  adc #BULLET_1_HEIGHT
+  cmp enemy_y_hi, x
+  bcc NoCollision  ; A is above B
+
+; Check if A is below B
+  lda enemy_y_hi, x
+  clc
+  adc #ENEMY_HEIGHT
+  cmp player_bullet_y, y
+  bcc NoCollision  ; A is below B
+
+  ; remove enemy & bullet
+  lda #$F0
+  sta player_bullet_y, y
+  lda #$00
+  sta player_bullet_x, y
+  sta player_bullet_flags, y
+
+  ;lda #$5
+  ;sta enemy_damage, x
+
+  dec enemy_health, x
+  lda enemy_health, x
+  cmp #0
+  bne :+
+  lda #$F0
+  sta enemy_y_hi, x
+  lda #$00
+  ;sta enemy_x_speed_high, x
+  sta enemy_flags, x
+
+; --------------------------------------------------
+; Play sound fx
+; --------------------------------------------------
+  ; play explosion sound effect (#00)
+  ; LDX #channel, LDA #which_sfx, JSR FamiToneSfxPlay
+  ;lda #$00 
+  ;ldx #$00 ; channel $00
+  ;jsr FamiToneSfxPlay
+
+:
+
+NoCollision:
+  inx
+  cpx #NUMBER_OF_ENEMIES
+  bne check
+
   RESTORE_REGISTERS
   rts
 .endproc

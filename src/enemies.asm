@@ -15,6 +15,8 @@ EXPLOSION_FRAME_OFFSET = 24
 ANIMATED_ENEMY_FRAME_OFFSET = 20
 ENEMY_MOVING_LEFT_FRAME_OFFSET = 1
 ENEMY_MOVING_RIGHT_FRAME_OFFSET = 2
+ENEMY_WIDTH = 16
+ENEMY_HEIGHT = 16
 
 ; --------------------------------------------------
 ; enemy flags
@@ -48,6 +50,7 @@ enemy_flags: .res NUMBER_OF_ENEMIES
 enemy_path: .res NUMBER_OF_ENEMIES
 enemy_path_index: .res NUMBER_OF_ENEMIES
 enemy_frame_number: .res NUMBER_OF_ENEMIES
+enemy_health: .res NUMBER_OF_ENEMIES
 
 ; --------------------------------------------------
 ; enemy SoA
@@ -579,6 +582,13 @@ dont_reset_spawn_num:
   sta enemy_x_hi, x
   lda spawn_enemy_ypos_table, y
   sta enemy_y_hi, x
+
+; --------------------------------------------------
+; set initial health of the enemy
+; TODO, probably needs to be pulled from a table
+; --------------------------------------------------
+  lda #5
+  sta enemy_health, x
 
 ; --------------------------------------------------
 ; Set the type of enemy that will spawn

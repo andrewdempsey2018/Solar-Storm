@@ -128,6 +128,7 @@ ClearEnemyData:
   sta enemy_path, x
   sta enemy_path_index, x
   sta enemy_frame_number, x
+  sta enemy_health, x
   inx
   cpx #NUMBER_OF_ENEMIES
   bne ClearEnemyData
