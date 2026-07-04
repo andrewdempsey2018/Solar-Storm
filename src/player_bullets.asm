@@ -236,15 +236,25 @@ check:
   cmp player_bullet_y, y
   bcc NoCollision  ; A is below B
 
-  ; remove enemy & bullet
+
+; --------------------------------------------------
+; Collision occured.
+; Prepare enemy to display 'hit' animaion.
+; Remove bullet.
+; Play appropriate sound effect.
+; --------------------------------------------------
+  lda enemy_flags, x
+  ora #ENEMY_HIT
+  sta enemy_flags, x
+  lda #TIME_TO_DISPLAY_ENEMY_HIT_FRAME
+  sta enemy_frame_number, x
+
+; Remove enemy & bullet.
   lda #$F0
   sta player_bullet_y, y
   lda #$00
   sta player_bullet_x, y
   sta player_bullet_flags, y
-
-  ;lda #$5
-  ;sta enemy_damage, x
 
   dec enemy_health, x
   lda enemy_health, x

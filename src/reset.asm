@@ -135,11 +135,13 @@ ClearEnemyData:
 
   lda #$00
   sta current_enemy
+  sta enemy_frame_to_draw
+  lda #$FF
   sta enemy_spawn_number
   sta enemy_spawn_index
-  sta enemy_spawn_wait
   sta enemy_spawn_script
-  sta enemy_frame_to_draw
+  lda #$05
+  sta enemy_spawn_wait
 
 ; --------------------------------------------------
 ; Finished clearing memory, vblank wait then go to game.

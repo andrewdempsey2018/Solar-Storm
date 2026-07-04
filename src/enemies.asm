@@ -17,6 +17,7 @@ ENEMY_MOVING_LEFT_FRAME_OFFSET = 1
 ENEMY_MOVING_RIGHT_FRAME_OFFSET = 2
 ENEMY_WIDTH = 16
 ENEMY_HEIGHT = 16
+TIME_TO_DISPLAY_ENEMY_HIT_FRAME = 5
 
 ; --------------------------------------------------
 ; enemy flags
@@ -26,7 +27,7 @@ ENEMY_ALIVE = %10000000
 ENEMY_FLAG_6 = %01000000
 ENEMY_FLAG_5 = %00100000
 ENEMY_FLAG_4 = %00010000
-ENEMY_FLAG_3 = %00001000
+ENEMY_HIT = %00001000
 ENEMY_EXPLODING = %00000100
 ENEMY_MOVING_RIGHT = %00000010
 ENEMY_MOVING_LEFT = %00000001
@@ -201,6 +202,11 @@ dont_reset_path_index:
   and #ENEMY_EXPLODING
   bne enemy_exploding
 
+; Check if enemy is hit (play hit animation frame)
+  lda enemy_flags, x
+  and #ENEMY_HIT
+  bne enemy_hit
+
 ; Is enemy a move down type or an animated type
   lda enemy_type, x
   cmp #5
@@ -210,7 +216,19 @@ dont_reset_path_index:
   cmp #10
 
 ; Enemy type 5-9 (enemies 5-9 are animated enemies with four frames of animation)
-  bcc enemy_type_animated  
+  bcc enemy_type_animated
+
+enemy_hit:
+  lda #24 ; picked this frame for testing
+  sta enemy_frame_to_draw
+  dec enemy_frame_number, x
+  lda enemy_frame_number, x
+  cmp #0
+  bne done_setting_animation_frame
+  lda #%10000000
+  sta enemy_flags, x
+  ;lda
+  jmp done_setting_animation_frame
 
 enemy_exploding:
 ; Advance explosion animation every 4 frames
