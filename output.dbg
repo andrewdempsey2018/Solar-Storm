@@ -25,7 +25,7 @@ file	id=21,name="src/../data/level4_title_data.asm",size=3142,mtime=0x6A42B33A,m
 file	id=22,name="src/../data/ending_data.asm",size=3137,mtime=0x6A42B33A,mod=0
 file	id=23,name="src/player.asm",size=2459,mtime=0x6A42B1A6,mod=0
 file	id=24,name="src/enemies.asm",size=15435,mtime=0x6A49700D,mod=0
-file	id=25,name="src/../data/enemy_data.asm",size=17776,mtime=0x6A49707F,mod=0
+file	id=25,name="src/../data/enemy_data.asm",size=17776,mtime=0x6A49728A,mod=0
 file	id=26,name="src/player_bullets.asm",size=6940,mtime=0x6A49270A,mod=0
 file	id=27,name="graphics_generic.chr",size=8192,mtime=0x6A4142CA,mod=0
 file	id=28,name="graphics_title.chr",size=8192,mtime=0x6A410DA4,mod=0
