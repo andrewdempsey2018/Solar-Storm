@@ -225,9 +225,9 @@ enemy_hit:
   lda enemy_frame_number, x
   cmp #0
   bne done_setting_animation_frame
-  lda #%10000000
+  lda enemy_flags, x
+  eor #ENEMY_HIT
   sta enemy_flags, x
-  ;lda
   jmp done_setting_animation_frame
 
 enemy_exploding:
