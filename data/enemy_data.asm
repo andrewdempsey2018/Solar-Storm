@@ -9,20 +9,26 @@ enemy_0_move_left_frame:
   .byte $50,$00,$51,$00,$42,$00,$43,$00
 enemy_0_move_right_frame:
   .byte $40,$00,$41,$00,$42,$00,$43,$00
+enemy_0_hit_frame:
+  .byte $70,$00,$71,$00,$80,$00,$81,$00
 
 enemy_1_move_down_frame:
-  .byte $40,$00,$41,$00,$42,$00,$43,$00
+  .byte $44,$01,$45,$01,$46,$01,$47,$01
 enemy_1_move_left_frame:
-  .byte $50,$00,$51,$00,$42,$00,$43,$00
+  .byte $44,$01,$45,$01,$46,$01,$47,$01
 enemy_1_move_right_frame:
-  .byte $40,$00,$41,$00,$42,$00,$43,$00
+  .byte $44,$01,$45,$01,$46,$01,$47,$01
+enemy_1_hit_frame:
+  .byte $72,$00,$73,$00,$82,$00,$83,$00
 
 enemy_2_move_down_frame:
-  .byte $40,$00,$41,$00,$42,$00,$43,$00
+  .byte $60,$00,$61,$00,$62,$00,$63,$00
 enemy_2_move_left_frame:
-  .byte $50,$00,$51,$00,$42,$00,$43,$00
+  .byte $60,$00,$61,$00,$62,$00,$63,$00
 enemy_2_move_right_frame:
-  .byte $40,$00,$41,$00,$42,$00,$43,$00
+  .byte $60,$00,$61,$00,$62,$00,$63,$00
+enemy_2_hit_frame:
+  .byte $78,$00,$79,$00,$88,$00,$89,$00
 
 enemy_3_move_down_frame:
   .byte $40,$00,$41,$00,$42,$00,$43,$00
@@ -46,6 +52,8 @@ enemy_animated_0_frame_2:
   .byte $40,$00,$41,$00,$42,$00,$43,$00
 enemy_animated_0_frame_3:
   .byte $40,$00,$41,$00,$42,$00,$43,$00
+enemy_animated_0_hit_frame:
+  .byte $78,$00,$79,$00,$88,$00,$89,$00
 
 explosion_frame_0:
   .byte $70,$00,$71,$00,$80,$00,$81,$00
@@ -63,66 +71,126 @@ explosion_frame_3:
 
 ; Drawing routine expects 4 frames per enemy hence
 ; some filler values ($FF).
+
+; 8th frame for each enemy is expected to be the
+; 'hit' frame for the enemy i.e. what is displayed
+; when the enemy is hit by a player bullet.
 ; --------------------------------------------------
 frames_lo_table:
   .byte <enemy_0_move_down_frame
   .byte <enemy_0_move_left_frame
   .byte <enemy_0_move_right_frame
   .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte <enemy_0_hit_frame
   .byte <enemy_1_move_down_frame
   .byte <enemy_1_move_left_frame
   .byte <enemy_1_move_right_frame
   .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte <enemy_1_hit_frame
   .byte <enemy_2_move_down_frame
   .byte <enemy_2_move_left_frame
   .byte <enemy_2_move_right_frame
   .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte <enemy_2_hit_frame
   .byte <enemy_3_move_down_frame
   .byte <enemy_3_move_left_frame
   .byte <enemy_3_move_right_frame
+  .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte $FF
   .byte $FF
   .byte <enemy_4_move_down_frame
   .byte <enemy_4_move_left_frame
   .byte <enemy_4_move_right_frame
   .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte $FF
   .byte <enemy_animated_0_frame_0
   .byte <enemy_animated_0_frame_1
   .byte <enemy_animated_0_frame_2
   .byte <enemy_animated_0_frame_3
+  .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte <enemy_animated_0_hit_frame
   .byte <explosion_frame_0
   .byte <explosion_frame_1
   .byte <explosion_frame_2
   .byte <explosion_frame_3
+  .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte $FF
 
 frames_hi_table:
   .byte >enemy_0_move_down_frame
   .byte >enemy_0_move_left_frame
   .byte >enemy_0_move_right_frame
   .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte >enemy_0_hit_frame
   .byte >enemy_1_move_down_frame
   .byte >enemy_1_move_left_frame
   .byte >enemy_1_move_right_frame
   .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte >enemy_1_hit_frame
   .byte >enemy_2_move_down_frame
   .byte >enemy_2_move_left_frame
   .byte >enemy_2_move_right_frame
   .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte >enemy_2_hit_frame
   .byte >enemy_3_move_down_frame
   .byte >enemy_3_move_left_frame
   .byte >enemy_3_move_right_frame
+  .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte $FF
   .byte $FF
   .byte >enemy_4_move_down_frame
   .byte >enemy_4_move_left_frame
   .byte >enemy_4_move_right_frame
   .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte $FF
   .byte >enemy_animated_0_frame_0
   .byte >enemy_animated_0_frame_1
   .byte >enemy_animated_0_frame_2
   .byte >enemy_animated_0_frame_3
+  .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte >enemy_animated_0_hit_frame
   .byte >explosion_frame_0
   .byte >explosion_frame_1
   .byte >explosion_frame_2
   .byte >explosion_frame_3
+  .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte $FF
 
 ; --------------------------------------------------
 ; Enemy data tables
@@ -169,11 +237,11 @@ spawn_enemy_ypos_table:
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 
 spawn_enemy_type_table:
-  .byte $00,$01,$02,$03,$04,$05,$05,$05,$05,$05,$05,$05,$05,$05,$05,$05
-  .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
-  .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
-  .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
-  .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+  .byte $00,$01,$05,$01,$02,$01,$02,$01,$02,$01,$02,$01,$02,$01,$00,$01
+  .byte $00,$01,$02,$01,$00,$01,$02,$01,$00,$01,$02,$01,$02,$01,$00,$01
+  .byte $00,$01,$00,$01,$00,$01,$00,$01,$00,$01,$00,$01,$00,$01,$00,$01
+  .byte $00,$01,$00,$01,$00,$01,$00,$01,$00,$01,$00,$01,$00,$01,$00,$01
+  .byte $00,$01,$00,$01,$00,$01,$00,$01,$00,$01,$00,$01,$00,$01,$00,$01
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
@@ -187,13 +255,13 @@ spawn_enemy_type_table:
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 
 spawn_enemy_path_table:
-  .byte $00,$06,$05,$06,$00,$06,$05,$06,$05,$00,$05,$06,$05,$00,$05,$01
-  .byte $05,$06,$05,$06,$05,$06,$05,$06,$05,$06,$05,$06,$05,$06,$05,$06
-  .byte $05,$06,$05,$06,$05,$06,$05,$06,$05,$06,$05,$06,$05,$06,$05,$06
-  .byte $05,$06,$05,$06,$05,$06,$05,$06,$05,$06,$05,$06,$05,$06,$05,$06
-  .byte $05,$06,$05,$06,$05,$06,$05,$06,$05,$06,$05,$06,$05,$06,$05,$06
-  .byte $05,$06,$05,$06,$05,$06,$05,$06,$05,$06,$05,$06,$05,$06,$05,$06
-  .byte $05,$06,$05,$06,$05,$06,$05,$06,$05,$06,$05,$06,$05,$06,$05,$06
+  .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+  .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+  .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+  .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+  .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+  .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+  .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00

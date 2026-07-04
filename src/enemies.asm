@@ -11,8 +11,8 @@
 ENEMY_OAM_START = $0218
 NUMBER_OF_ENEMIES = 5
 EXPLOSION_FRAME_COUNT = 4
-EXPLOSION_FRAME_OFFSET = 24
-ANIMATED_ENEMY_FRAME_OFFSET = 20
+EXPLOSION_FRAME_OFFSET = 48
+ANIMATED_ENEMY_FRAME_OFFSET = 40
 ENEMY_MOVING_LEFT_FRAME_OFFSET = 1
 ENEMY_MOVING_RIGHT_FRAME_OFFSET = 2
 ENEMY_WIDTH = 16
@@ -219,7 +219,14 @@ dont_reset_path_index:
   bcc enemy_type_animated
 
 enemy_hit:
-  lda #24 ; picked this frame for testing
+; multiply enemy type by 8, then add 7 to get the correct index
+; for the enemy's 'hit' frame (these are the 8th frame for each enemy)
+  lda enemy_type, x
+  asl a
+  asl a
+  asl a
+  clc
+  adc #7
   sta enemy_frame_to_draw
   dec enemy_frame_number, x
   lda enemy_frame_number, x
@@ -283,7 +290,8 @@ enemy_type_move_down:
   jmp moving_right
 moving_straight_down:
   lda enemy_type, x
-; Table holding frame data on these types of enemies is structured in groups of four bytes
+; Table holding frame data on these types of enemies is structured in groups of 8 bytes
+  asl a
   asl a
   asl a
   sta enemy_frame_to_draw
@@ -292,12 +300,14 @@ moving_left:
   lda enemy_type, x
   asl a
   asl a
+  asl a
   clc
   adc #ENEMY_MOVING_LEFT_FRAME_OFFSET
   sta enemy_frame_to_draw
   jmp done_setting_animation_frame
 moving_right:
   lda enemy_type, x
+  asl a
   asl a
   asl a
   clc
