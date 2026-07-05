@@ -2,6 +2,10 @@
 ; Tiles and attributes that make up enemy
 ; sprites/animation frames.
 ; tiletl,attribtl,tiletr,attribtr,tilebl,attribbl,tilebr,attribbr
+
+; At present there are 10 enemies:
+; enemy 0-4 are move down, left right types
+; enemy 5-9 are animated types
 ; --------------------------------------------------
 enemy_0_move_down_frame:
   .byte $40,$00,$41,$00,$42,$00,$43,$00
@@ -56,13 +60,13 @@ enemy_animated_0_hit_frame:
   .byte $7A,$00,$7A,$00,$7A,$00,$7A,$00
 
 explosion_frame_0:
-  .byte $70,$00,$71,$00,$80,$00,$81,$00
+  .byte $90,$03,$91,$03,$A0,$03,$A1,$03
 explosion_frame_1:
-  .byte $26,$00,$27,$00,$36,$00,$37,$00
+  .byte $92,$03,$93,$03,$A2,$03,$A3,$03
 explosion_frame_2:
-  .byte $46,$00,$47,$00,$56,$00,$57,$00
+  .byte $94,$03,$95,$03,$A4,$03,$A5,$03
 explosion_frame_3:
-  .byte $66,$00,$67,$00,$76,$00,$77,$00
+  .byte $96,$03,$97,$03,$A6,$03,$A7,$03
 
 ; --------------------------------------------------
 ; Address of each frame that will be used in
