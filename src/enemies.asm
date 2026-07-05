@@ -250,6 +250,11 @@ enemy_exploding:
   cmp #EXPLOSION_FRAME_COUNT
   bne draw_explosion_frame
 
+; Remove enemy
+  lda #$F0
+  sta enemy_y_hi, x
+  lda #$00
+  sta enemy_x_hi, x
   lda #ENEMY_DEAD
   sta enemy_flags, x
 
@@ -272,7 +277,7 @@ enemy_type_animated:
   lda enemy_frame_number, x
   cmp #4
   bne draw_animation_frame
-  lda #0
+  lda #$00
   sta enemy_frame_number, x
 
 draw_animation_frame:
@@ -641,7 +646,7 @@ dont_reset_spawn_num:
 ; Set the frame number to $FF in prep for animation
 ; to begin.
 ; --------------------------------------------------
-  lda #0
+  lda #$00
   sta enemy_frame_number, x
 
   RESTORE_REGISTERS

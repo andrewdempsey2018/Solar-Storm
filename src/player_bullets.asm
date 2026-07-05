@@ -236,7 +236,10 @@ check:
   cmp player_bullet_y, y
   bcc NoCollision  ; A is below B
 
-
+;;;
+  lda enemy_flags, x
+  and #ENEMY_EXPLODING
+  bne enemy_is_exploding
 ; --------------------------------------------------
 ; Collision occured.
 ; Prepare enemy to display 'hit' animaion.
@@ -259,12 +262,12 @@ check:
   dec enemy_health, x
   lda enemy_health, x
   cmp #0
-  bne :+
-  lda #$F0
-  sta enemy_y_hi, x
-  lda #$00
-  ;sta enemy_x_speed_high, x
+  bne enemy_has_health_remaining
+  lda enemy_flags, x
+  ora #ENEMY_EXPLODING
   sta enemy_flags, x
+  lda #$00
+  sta enemy_frame_number, x
 
 ; --------------------------------------------------
 ; Play sound fx
@@ -275,7 +278,8 @@ check:
   ;ldx #$00 ; channel $00
   ;jsr FamiToneSfxPlay
 
-:
+enemy_has_health_remaining:
+enemy_is_exploding:
 
 NoCollision:
   inx
