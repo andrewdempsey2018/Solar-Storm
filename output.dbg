@@ -1,6 +1,6 @@
 version	major=2,minor=0
 info	csym=0,file=33,lib=0,line=4274,mod=1,scope=35,seg=9,span=4048,sym=472,type=13
-file	id=0,name="src/main.asm",size=6581,mtime=0x6A44163E,mod=0
+file	id=0,name="src/main.asm",size=6623,mtime=0x6A4AC408,mod=0
 file	id=1,name="src/macros.asm",size=226,mtime=0x6A15422E,mod=0
 file	id=2,name="src/constants.inc",size=2018,mtime=0x6A4149DE,mod=0
 file	id=3,name="src/header.inc",size=397,mtime=0x6A413A2A,mod=0
@@ -27,12 +27,12 @@ file	id=23,name="src/player.asm",size=2459,mtime=0x6A42B1A6,mod=0
 file	id=24,name="src/enemies.asm",size=15521,mtime=0x6A4AB56C,mod=0
 file	id=25,name="src/../data/enemy_data.asm",size=17958,mtime=0x6A4AC2D8,mod=0
 file	id=26,name="src/player_bullets.asm",size=7156,mtime=0x6A4AC096,mod=0
-file	id=27,name="graphics_generic.chr",size=8192,mtime=0x6A4142CA,mod=0
-file	id=28,name="graphics_title.chr",size=8192,mtime=0x6A410DA4,mod=0
-file	id=29,name="graphics_station.chr",size=8192,mtime=0x69EC7544,mod=0
-file	id=30,name="graphics_beach.chr",size=8192,mtime=0x6A4A0E7E,mod=0
-file	id=31,name="graphics_ceres.chr",size=8192,mtime=0x69CC2D06,mod=0
-file	id=32,name="graphics_space.chr",size=8192,mtime=0x69CC32EA,mod=0
+file	id=27,name="../chr/graphics_generic.chr",size=8192,mtime=0x6A4142CA,mod=0
+file	id=28,name="../chr/graphics_title.chr",size=8192,mtime=0x6A410DA4,mod=0
+file	id=29,name="../chr/graphics_station.chr",size=8192,mtime=0x69EC7544,mod=0
+file	id=30,name="../chr/graphics_beach.chr",size=8192,mtime=0x6A4A0E7E,mod=0
+file	id=31,name="../chr/graphics_ceres.chr",size=8192,mtime=0x69CC2D06,mod=0
+file	id=32,name="../chr/graphics_space.chr",size=8192,mtime=0x69CC32EA,mod=0
 line	id=0,file=9,line=963,span=2617
 line	id=1,file=9,line=79
 line	id=2,file=24,line=181,span=3359

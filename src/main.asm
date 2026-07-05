@@ -284,9 +284,9 @@ sleep:
 .addr nmi_handler, reset_handler, irq_handler
 
 .segment "CHR"
-.incbin "graphics_generic.chr"
-.incbin "graphics_title.chr"
-.incbin "graphics_station.chr"
-.incbin "graphics_beach.chr"
-.incbin "graphics_ceres.chr"
-.incbin "graphics_space.chr"
+.incbin "../chr/graphics_generic.chr"
+.incbin "../chr/graphics_title.chr"
+.incbin "../chr/graphics_station.chr"
+.incbin "../chr/graphics_beach.chr"
+.incbin "../chr/graphics_ceres.chr"
+.incbin "../chr/graphics_space.chr"
