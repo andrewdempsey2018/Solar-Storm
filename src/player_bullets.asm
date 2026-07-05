@@ -259,6 +259,7 @@ check:
   sta player_bullet_x, y
   sta player_bullet_flags, y
 
+; Remove some enemy health and destroy enemy if needs be
   dec enemy_health, x
   lda enemy_health, x
   cmp #0

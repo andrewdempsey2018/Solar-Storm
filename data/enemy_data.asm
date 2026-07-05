@@ -36,6 +36,8 @@ enemy_3_move_left_frame:
   .byte $50,$00,$51,$00,$42,$00,$43,$00
 enemy_3_move_right_frame:
   .byte $40,$00,$41,$00,$42,$00,$43,$00
+enemy_3_hit_frame:
+  .byte $78,$00,$79,$00,$88,$00,$89,$00
 
 enemy_4_move_down_frame:
   .byte $40,$00,$41,$00,$42,$00,$43,$00
@@ -43,6 +45,8 @@ enemy_4_move_left_frame:
   .byte $50,$00,$51,$00,$42,$00,$43,$00
 enemy_4_move_right_frame:
   .byte $40,$00,$41,$00,$42,$00,$43,$00
+enemy_4_hit_frame:
+  .byte $78,$00,$79,$00,$88,$00,$89,$00
 
 enemy_animated_0_frame_0:
   .byte $48,$02,$49,$02,$4A,$02,$4B,$02
@@ -108,7 +112,7 @@ frames_lo_table:
   .byte $FF
   .byte $FF
   .byte $FF
-  .byte $FF
+  .byte <enemy_3_hit_frame
   .byte <enemy_4_move_down_frame
   .byte <enemy_4_move_left_frame
   .byte <enemy_4_move_right_frame
@@ -116,7 +120,7 @@ frames_lo_table:
   .byte $FF
   .byte $FF
   .byte $FF
-  .byte $FF
+  .byte <enemy_4_hit_frame
   .byte <enemy_animated_0_frame_0
   .byte <enemy_animated_0_frame_1
   .byte <enemy_animated_0_frame_2
@@ -166,7 +170,7 @@ frames_hi_table:
   .byte $FF
   .byte $FF
   .byte $FF
-  .byte $FF
+  .byte >enemy_3_hit_frame
   .byte >enemy_4_move_down_frame
   .byte >enemy_4_move_left_frame
   .byte >enemy_4_move_right_frame
@@ -174,7 +178,7 @@ frames_hi_table:
   .byte $FF
   .byte $FF
   .byte $FF
-  .byte $FF
+  .byte >enemy_4_hit_frame
   .byte >enemy_animated_0_frame_0
   .byte >enemy_animated_0_frame_1
   .byte >enemy_animated_0_frame_2
@@ -237,8 +241,8 @@ spawn_enemy_ypos_table:
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 
 spawn_enemy_type_table:
-  .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
-  .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+  .byte $00,$00,$00,$01,$01,$01,$02,$02,$02,$03,$03,$03,$04,$04,$04,$05
+  .byte $05,$05,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
@@ -255,7 +259,7 @@ spawn_enemy_type_table:
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 
 spawn_enemy_path_table:
-  .byte $06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06
+  .byte $00,$00,$01,$01,$02,$02,$03,$03,$04,$04,$05,$05,$06,$06,$06,$06
   .byte $06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
