@@ -141,9 +141,9 @@ done:
 
   lda player_bullet_y, x
   sta PLAYER_BULLET_OAM_START, y
-  lda #$1E
+  lda #$0C
   sta PLAYER_BULLET_OAM_START+1, y
-  lda #$01
+  lda #$02
   sta PLAYER_BULLET_OAM_START+2, y
   lda player_bullet_x, x
   sta PLAYER_BULLET_OAM_START+3, y
