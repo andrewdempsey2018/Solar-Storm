@@ -10,6 +10,7 @@
 .include "player.asm"
 .include "enemies.asm"
 .include "player_bullets.asm"
+.include "gameplay_level.asm"
 
 .segment "ZEROPAGE"
 sleeping: .res 1
@@ -49,11 +50,11 @@ screens_lo_pointer: .res 2
 screens_hi_pointer: .res 2
 attribs_lo_pointer: .res 2
 attribs_hi_pointer: .res 2
+scene_number: .res 1
 
 .segment "BSS"
 row_data: .res 64
 attrib_data: .res 8
-scene_number: .res 1
 
 .segment "CODE"
 
@@ -198,64 +199,103 @@ load_demoncore_screen_palettes:
 
 mainloop:
 
-; --------------------------------------------------
-; Spawing enemies
-; Read the general purpose timer. Every 32 frames decrement
-; the enemy_spawn_wait time
-;
-; Begin spawn procedure when enemy_spawn_wait=0
-; set x to the number of enemies to spawn
-; set enemy_spawn_wait to the time desired to wait for next spawn
-; --------------------------------------------------
-  lda timer
-  and #%00011111
-  bne skip_spawn_wait_decrement
-  dec enemy_spawn_wait
-skip_spawn_wait_decrement:
+  lda scene_number
+  
+  cmp #SCENE_NUMBER_DEMONCORE_SCREEN
+  beq demoncore_screen
+  cmp #SCENE_NUMBER_TITLE_SCREEN
+  beq title_screen
+  cmp #SCENE_NUMBER_INTRO_SCREEN
+  beq intro_screen
+  cmp #SCENE_NUMBER_SHIPSELECT_SCREEN
+  beq shipselect_screen
+  cmp #SCENE_NUMBER_LEVEL1TITLE_SCREEN
+  beq level1title_screen
+  cmp #SCENE_NUMBER_LEVEL1GAMEPLAY_SCREEN
+  beq level1gameplay_screen
+  cmp #SCENE_NUMBER_LEVEL1BOSS_SCREEN
+  beq level1boss_screen
+  cmp #SCENE_NUMBER_LEVEL2TITLE_SCREEN
+  beq level2title_screen
+  cmp #SCENE_NUMBER_LEVEL2GAMEPLAY_SCREEN
+  beq level2gameplay_screen
+  cmp #SCENE_NUMBER_LEVEL2BOSS_SCREEN
+  beq level2boss_screen
+  cmp #SCENE_NUMBER_LEVEL3TITLE_SCREEN
+  beq level3title_screen
+  cmp #SCENE_NUMBER_LEVEL3GAMEPLAY_SCREEN
+  beq level3gameplay_screen
+  cmp #SCENE_NUMBER_LEVEL3BOSS_SCREEN
+  beq level3boss_screen
+  cmp #SCENE_NUMBER_LEVEL4TITLE_SCREEN
+  beq level4title_screen
+  cmp #SCENE_NUMBER_LEVEL4GAMEPLAY_SCREEN
+  beq level4gameplay_screen
+  cmp #SCENE_NUMBER_LEVEL4BOSS_SCREEN
+  beq level4boss_screen
+  cmp #SCENE_NUMBER_ENDING_SCREEN
+  beq ending_screen
 
-  lda enemy_spawn_wait
-  bne dont_spawn
-
-  inc enemy_spawn_script
-  lda enemy_spawn_script
-  tay
-  lda spawn_enemy_qty_table, y
-  tax
-
-  lda spawn_enemy_wait_table, y
-  sta enemy_spawn_wait
-
-spawn:
-  jsr SpawnEnemy
-  dex
-  cpx #$00
-  bne spawn
-
-dont_spawn:
-
-; --------------------------------------------------
-; process enemies
-; --------------------------------------------------
-  jsr ProcessEnemeies
-
-; --------------------------------------------------
-; 
-; --------------------------------------------------
-  jsr ProcessPlayerBullets
-  jsr ShootPlayerBullets
-
-; --------------------------------------------------
-; 
-; --------------------------------------------------
-  jsr move_player
-  jsr draw_player
-
-  lda prep_next_row
-  beq next_row_is_prepared
-  jsr prepare_next_row
-next_row_is_prepared:
-
+demoncore_screen:
   jsr read_controller
+  jmp done
+title_screen:
+  jsr read_controller
+  jmp done
+intro_screen:
+  jsr read_controller
+  jmp done
+shipselect_screen:
+  jsr read_controller
+  jmp done
+level1title_screen:
+  jsr read_controller
+  jmp done
+level1gameplay_screen:
+  jsr GameplayLevel
+  jsr read_controller
+  jmp done
+level1boss_screen:
+  jsr GameplayLevel
+  jsr read_controller
+  jmp done
+level2title_screen:
+  jsr read_controller
+  jmp done
+level2gameplay_screen:
+  jsr GameplayLevel
+  jsr read_controller
+  jmp done
+level2boss_screen:
+  jsr GameplayLevel
+  jsr read_controller
+  jmp done
+level3title_screen:
+  jsr read_controller
+  jmp done
+level3gameplay_screen:
+  jsr GameplayLevel
+  jsr read_controller
+  jmp done
+level3boss_screen:
+  jsr GameplayLevel
+  jsr read_controller
+  jmp done
+level4title_screen:
+  jsr read_controller
+  jmp done
+level4gameplay_screen:
+  jsr GameplayLevel
+  jsr read_controller
+  jmp done
+level4boss_screen:
+  jsr GameplayLevel
+  jsr read_controller
+  jmp done
+ending_screen:
+  jsr read_controller
+
+done:
 
 ; --------------------------------------------------
 ; For debug purposes.
@@ -271,7 +311,7 @@ next_row_is_prepared:
 ; 
 ; --------------------------------------------------
 
-done:
+
   inc sleeping
 sleep:
   lda sleeping
