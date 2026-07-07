@@ -139,7 +139,7 @@ dont_render:
 ; --------------------------------------------------
 ; Load first screen
 ; --------------------------------------------------
-  lda #BANK_NUMBER_GENERIC
+  lda #BANK_NUMBER_TEXT
   sta BANK_SWITCH
 
   ldx PPUSTATUS
@@ -323,10 +323,38 @@ sleep:
 .segment "VECTORS"
 .addr nmi_handler, reset_handler, irq_handler
 
-.segment "CHR"
-.incbin "../chr/graphics_generic.chr"
-.incbin "../chr/graphics_title.chr"
-.incbin "../chr/graphics_station.chr"
-.incbin "../chr/graphics_beach.chr"
-.incbin "../chr/graphics_ceres.chr"
-.incbin "../chr/graphics_space.chr"
+.segment "CHRROM_TEXT"
+.incbin "../chr/text.chr"
+
+.segment "CHRROM_LEVEL1"
+.incbin "../chr/level1.chr"
+
+.segment "CHRROM_BOSS1"
+.incbin "../chr/boss1.chr"
+
+.segment "CHRROM_LEVEL2"
+.incbin "../chr/level2.chr"
+
+.segment "CHRROM_BOSS2"
+.incbin "../chr/boss2.chr"
+
+.segment "CHRROM_LEVEL3"
+.incbin "../chr/level3.chr"
+
+.segment "CHRROM_BOSS3"
+.incbin "../chr/boss3.chr"
+
+.segment "CHRROM_LEVEL4"
+.incbin "../chr/level4.chr"
+
+.segment "CHRROM_BOSS4"
+.incbin "../chr/boss4.chr"
+
+.segment "CHRROM_TITLE"
+.incbin "../chr/title.chr"
+
+.segment "CHRROM_INTRO"
+.incbin "../chr/intro.chr"
+
+.segment "CHRROM_ENDING"
+.incbin "../chr/ending.chr"

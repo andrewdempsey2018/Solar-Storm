@@ -130,7 +130,7 @@
 ; load_demoncore_static_scene
 ; --------------------------------------------------
 load_demoncore_static_scene:
-  lda #BANK_NUMBER_GENERIC
+  lda #BANK_NUMBER_TEXT
   sta BANK_SWITCH
 
   ldx PPUSTATUS
@@ -174,7 +174,7 @@ load_demoncore_screen_palettes:
 ; Load title screen.
 ; --------------------------------------------------
 load_titlescreen_static_scene:
-  lda #BANK_NUMBER_TITLE_SCREEN
+  lda #BANK_NUMBER_TITLE
   sta BANK_SWITCH
 
   ldx PPUSTATUS
@@ -218,7 +218,7 @@ load_titlescreen_palettes:
 ; load_intro_static_scene
 ; --------------------------------------------------
 load_intro_static_scene:
-  lda #BANK_NUMBER_GENERIC
+  lda #BANK_NUMBER_TEXT
   sta BANK_SWITCH
 
   ldx PPUSTATUS
@@ -262,7 +262,7 @@ load_intro_scene_palettes:
 ; load_shipselect_static_scene
 ; --------------------------------------------------
 load_shipselect_static_scene:
-  lda #BANK_NUMBER_GENERIC
+  lda #BANK_NUMBER_TEXT
   sta BANK_SWITCH
 
   ldx PPUSTATUS
@@ -306,7 +306,7 @@ load_shipselect_scene_palettes:
 ; load_level1title_static_scene
 ; --------------------------------------------------
 load_level1title_static_scene:
-  lda #BANK_NUMBER_GENERIC
+  lda #BANK_NUMBER_TEXT
   sta BANK_SWITCH
 
   ldx PPUSTATUS
@@ -364,7 +364,7 @@ load_level1_gameplay_scene:
   cpx #$20
   bne @load_palette
 
-  lda #BANK_NUMBER_BEACH
+  lda #BANK_NUMBER_LEVEL1
   sta BANK_SWITCH
 
   lda #<BeachData::ScreenX
@@ -458,7 +458,7 @@ load_level1boss_scene:
   cpx #$20
   bne @load_palette
 
-  lda #BANK_NUMBER_BEACH
+  lda #BANK_NUMBER_BOSS1
   sta BANK_SWITCH
 
   lda #<BeachData::ScreenX
@@ -538,7 +538,7 @@ load_level1boss_scene:
 ; load_level2title_static_scene
 ; --------------------------------------------------
 load_level2title_static_scene:
-  lda #BANK_NUMBER_GENERIC
+  lda #BANK_NUMBER_TEXT
   sta BANK_SWITCH
 
   ldx PPUSTATUS
@@ -596,7 +596,7 @@ load_level2_gameplay_scene:
   cpx #$20
   bne @load_palette
 
-  lda #BANK_NUMBER_STATION
+  lda #BANK_NUMBER_LEVEL2
   sta BANK_SWITCH
 
   lda #<StationData::Screen1
@@ -690,7 +690,7 @@ load_level2boss_scene:
   cpx #$20
   bne @load_palette
 
-  lda #BANK_NUMBER_STATION
+  lda #BANK_NUMBER_BOSS2
   sta BANK_SWITCH
 
   lda #<StationData::Screen1
@@ -770,7 +770,7 @@ load_level2boss_scene:
 ; load_level3title_static_scene
 ; --------------------------------------------------
 load_level3title_static_scene:
-  lda #BANK_NUMBER_GENERIC
+  lda #BANK_NUMBER_TEXT
   sta BANK_SWITCH
 
   ldx PPUSTATUS
@@ -828,7 +828,7 @@ load_level3_gameplay_scene:
   cpx #$20
   bne @load_palette
 
-  lda #BANK_NUMBER_CERES
+  lda #BANK_NUMBER_LEVEL3
   sta BANK_SWITCH
 
   lda #<CeresData::Screen1
@@ -922,7 +922,7 @@ load_level3boss_scene:
   cpx #$20
   bne @load_palette
 
-  lda #BANK_NUMBER_CERES
+  lda #BANK_NUMBER_BOSS3
   sta BANK_SWITCH
 
   lda #<CeresData::Screen1
@@ -1002,7 +1002,7 @@ load_level3boss_scene:
 ; load_level4title_static_scene
 ; --------------------------------------------------
 load_level4title_static_scene:
-  lda #BANK_NUMBER_GENERIC
+  lda #BANK_NUMBER_TEXT
   sta BANK_SWITCH
 
   ldx PPUSTATUS
@@ -1060,7 +1060,7 @@ load_level4_gameplay_scene:
   cpx #$20
   bne @load_palette
 
-  lda #BANK_NUMBER_SPACE
+  lda #BANK_NUMBER_LEVEL4
   sta BANK_SWITCH
 
   lda #<SpaceData::Screen1
@@ -1154,7 +1154,7 @@ load_level4boss_scene:
   cpx #$20
   bne @load_palette
 
-  lda #BANK_NUMBER_SPACE
+  lda #BANK_NUMBER_BOSS4
   sta BANK_SWITCH
 
   lda #<SpaceData::Screen1
@@ -1234,7 +1234,7 @@ load_level4boss_scene:
 ; load_ending_static_scene
 ; --------------------------------------------------
 load_ending_static_scene:
-  lda #BANK_NUMBER_GENERIC
+  lda #BANK_NUMBER_ENDING
   sta BANK_SWITCH
 
   ldx PPUSTATUS
