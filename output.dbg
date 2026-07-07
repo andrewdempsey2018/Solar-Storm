@@ -32,7 +32,7 @@ file	id=28,name="src/../chr/text.chr",size=8192,mtime=0x6A4B4F7E,mod=0
 file	id=29,name="src/../chr/level1.chr",size=8192,mtime=0x6A4B4F7E,mod=0
 file	id=30,name="src/../chr/boss1.chr",size=8192,mtime=0x6A4B4F7E,mod=0
 file	id=31,name="src/../chr/level2.chr",size=8192,mtime=0x6A4B4F7E,mod=0
-file	id=32,name="src/../chr/boss2.chr",size=8192,mtime=0x6A4B4F7E,mod=0
+file	id=32,name="src/../chr/boss2.chr",size=8192,mtime=0x6A4D40F7,mod=0
 file	id=33,name="src/../chr/level3.chr",size=8192,mtime=0x6A4B4F7E,mod=0
 file	id=34,name="src/../chr/boss3.chr",size=8192,mtime=0x6A4B4F7E,mod=0
 file	id=35,name="src/../chr/level4.chr",size=8192,mtime=0x6A4B4F7E,mod=0
