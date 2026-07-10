@@ -722,9 +722,9 @@ load_level2boss_scene:
   sta nametable_number
   jsr init_nametable
 
-  lda #<Boss2Data::ScreenX
+  lda #<Boss2Data::Screen1
   sta layout_pointer
-  lda #>Boss2Data::ScreenX
+  lda #>Boss2Data::Screen1
   sta layout_pointer+1
 
   lda #<Boss2Data::MetatileTop

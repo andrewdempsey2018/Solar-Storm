@@ -9,7 +9,7 @@ file	id=5,name="src/controllers.asm",size=373,mtime=0x6A4B4F7E,mod=0
 file	id=6,name="src/load_row.asm",size=5349,mtime=0x6A4B4F7E,mod=0
 file	id=7,name="src/ClearOAM.asm",size=208,mtime=0x6A4B4F7E,mod=0
 file	id=8,name="src/init_nametable.asm",size=1589,mtime=0x6A4B4F7E,mod=0
-file	id=9,name="src/load_levels.asm",size=27681,mtime=0x6A5158EC,mod=0
+file	id=9,name="src/load_levels.asm",size=27681,mtime=0x6A515AC8,mod=0
 file	id=10,name="src/../data/beach_data.asm",size=8361,mtime=0x6A4B4F7E,mod=0
 file	id=11,name="src/../data/station_data.asm",size=8996,mtime=0x6A4B4F7E,mod=0
 file	id=12,name="src/../data/ceres_data.asm",size=8766,mtime=0x6A4B4F7E,mod=0
@@ -9326,9 +9326,9 @@ sym	id=315,name="AttribsLow",addrsize=absolute,scope=17,def=1018,ref=3522+3090,v
 sym	id=316,name="ScreensHigh",addrsize=absolute,scope=17,def=1116,ref=1070+2192,val=0xBB28,seg=1,type=lab
 sym	id=317,name="ScreensLow",addrsize=absolute,scope=17,def=1583,ref=2540+1787,val=0xBB0E,seg=1,type=lab
 sym	id=318,name="ScreenXAttrib",addrsize=absolute,scope=17,def=4481,ref=2409+460,val=0xBACE,seg=1,type=lab
-sym	id=319,name="ScreenX",addrsize=absolute,scope=17,def=953,ref=3158+214+3662+4355,val=0xB9DE,seg=1,type=lab
+sym	id=319,name="ScreenX",addrsize=absolute,scope=17,def=953,ref=3158+214,val=0xB9DE,seg=1,type=lab
 sym	id=320,name="Screen1Attrib",addrsize=absolute,scope=17,def=1011,ref=2892+2892+2892+2892+2892+2892+2892+2892+2892+2892+2892+2892+2892+4510+4510+4510+4510+4510+4510+4510+4510+4510+4510+4510+4510+4510+1969+1969+1969+1969+1969+1969+1969+1969+1969+1969+1969+1969+1969+3958+3958+3958+3958+3958+3958+3958+3958+3958+3958+3958+3958+3958,val=0xB99E,seg=1,type=lab
-sym	id=321,name="Screen1",addrsize=absolute,scope=17,def=3111,ref=3844+3844+3844+3844+3844+3844+3844+3844+3844+3844+3844+3844+3844+817+817+817+817+817+817+817+817+817+817+817+817+817+2208+2208+2208+2208+2208+2208+2208+2208+2208+2208+2208+2208+2208+4291+4291+4291+4291+4291+4291+4291+4291+4291+4291+4291+4291+4291,val=0xB8AE,seg=1,type=lab
+sym	id=321,name="Screen1",addrsize=absolute,scope=17,def=3111,ref=3844+3844+3844+3844+3844+3844+3844+3844+3844+3844+3844+3844+3844+817+817+817+817+817+817+817+817+817+817+817+817+817+2208+2208+2208+2208+2208+2208+2208+2208+2208+2208+2208+2208+2208+4291+4291+4291+4291+4291+4291+4291+4291+4291+4291+4291+4291+4291+3662+4355,val=0xB8AE,seg=1,type=lab
 sym	id=322,name="MetatileBottom",addrsize=absolute,scope=17,def=2131,ref=3173+3318+850+3462,val=0xB82C,seg=1,type=lab
 sym	id=323,name="MetatileTop",addrsize=absolute,scope=17,def=1716,ref=4271+1128+913+98,val=0xB7AA,seg=1,type=lab
 sym	id=324,name="PaletteTable",addrsize=absolute,scope=16,def=18,ref=1024,val=0xB78A,seg=1,type=lab
