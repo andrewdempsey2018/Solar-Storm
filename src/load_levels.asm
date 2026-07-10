@@ -14,6 +14,7 @@
 .include "../data/shipselect_data.asm"
 .include "../data/level1_title_data.asm"
 .include "../data/level2_title_data.asm"
+.include "../data/boss2_data.asm"
 .include "../data/level3_title_data.asm"
 .include "../data/level4_title_data.asm"
 .include "../data/ending_data.asm"
@@ -684,7 +685,7 @@ load_level2boss_scene:
 
   ldx #$00
 @load_palette:
-  lda StationData::PaletteTable, x
+  lda Boss2Data::PaletteTable, x
   sta PPUDATA
   inx
   cpx #$20
@@ -693,24 +694,24 @@ load_level2boss_scene:
   lda #BANK_NUMBER_BOSS2
   sta BANK_SWITCH
 
-  lda #<StationData::Screen1
+  lda #<Boss2Data::ScreenX
   sta layout_pointer
-  lda #>StationData::Screen1
+  lda #>Boss2Data::ScreenX
   sta layout_pointer+1
 
-  lda #<StationData::MetatileTop
+  lda #<Boss2Data::MetatileTop
   sta metatile_top_pointer
-  lda #>StationData::MetatileTop
+  lda #>Boss2Data::MetatileTop
   sta metatile_top_pointer+1
 
-  lda #<StationData::MetatileBottom
+  lda #<Boss2Data::MetatileBottom
   sta metatile_bottom_pointer
-  lda #>StationData::MetatileBottom
+  lda #>Boss2Data::MetatileBottom
   sta metatile_bottom_pointer+1
 
-  lda #<StationData::Screen1Attrib
+  lda #<Boss2Data::ScreenXAttrib
   sta attribs_pointer
-  lda #>StationData::Screen1Attrib
+  lda #>Boss2Data::ScreenXAttrib
   sta attribs_pointer+1
 
   lda #0
@@ -721,40 +722,39 @@ load_level2boss_scene:
   sta nametable_number
   jsr init_nametable
 
-  lda #<StationData::Screen1
+  lda #<Boss2Data::ScreenX
   sta layout_pointer
-  lda #>StationData::Screen1
+  lda #>Boss2Data::ScreenX
   sta layout_pointer+1
 
-  lda #<StationData::MetatileTop
+  lda #<Boss2Data::MetatileTop
   sta metatile_top_pointer
-  lda #>StationData::MetatileTop
+  lda #>Boss2Data::MetatileTop
   sta metatile_top_pointer+1
 
-  lda #<StationData::MetatileBottom
+  lda #<Boss2Data::MetatileBottom
   sta metatile_bottom_pointer
-  lda #>StationData::MetatileBottom
+  lda #>Boss2Data::MetatileBottom
   sta metatile_bottom_pointer+1
 
-
-  lda #<StationData::ScreensLow
+  lda #<Boss2Data::ScreensLow
   sta screens_lo_pointer
-  lda #>StationData::ScreensLow
+  lda #>Boss2Data::ScreensLow
   sta screens_lo_pointer+1
 
-  lda #<StationData::ScreensHigh
+  lda #<Boss2Data::ScreensHigh
   sta screens_hi_pointer
-  lda #>StationData::ScreensHigh
+  lda #>Boss2Data::ScreensHigh
   sta screens_hi_pointer+1
 
-  lda #<StationData::AttribsLow
+  lda #<Boss2Data::AttribsLow
   sta attribs_lo_pointer
-  lda #>StationData::AttribsLow
+  lda #>Boss2Data::AttribsLow
   sta attribs_lo_pointer+1
 
-  lda #<StationData::AttribsHigh
+  lda #<Boss2Data::AttribsHigh
   sta attribs_hi_pointer
-  lda #>StationData::AttribsHigh
+  lda #>Boss2Data::AttribsHigh
   sta attribs_hi_pointer+1
 
   ldy #$00
