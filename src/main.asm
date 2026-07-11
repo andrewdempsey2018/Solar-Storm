@@ -71,12 +71,20 @@ attrib_data: .res 8
   sta OAMDMA
   lda #$00
 
-; --------------------------------------------------
+
 ; Timer - general purpose, used to trigger a variety 
 ; of events
 ; --------------------------------------------------
   inc timer
 
+; --------------------------------------------------
+; Player input reads
+; --------------------------------------------------
+  jsr read_controller
+
+; --------------------------------------------------
+; 
+; --------------------------------------------------
   lda do_scroll
   cmp #$01
   bne dont_scroll
@@ -237,63 +245,46 @@ mainloop:
   beq ending_screen
 
 demoncore_screen:
-  jsr read_controller
   jmp done
 title_screen:
-  jsr read_controller
   jmp done
 intro_screen:
-  jsr read_controller
   jmp done
 shipselect_screen:
-  jsr read_controller
   jmp done
 level1title_screen:
-  jsr read_controller
   jmp done
 level1gameplay_screen:
   jsr GameplayLevel
-  jsr read_controller
   jmp done
 level1boss_screen:
   jsr GameplayLevel
-  jsr read_controller
   jmp done
 level2title_screen:
-  jsr read_controller
   jmp done
 level2gameplay_screen:
   jsr GameplayLevel
-  jsr read_controller
   jmp done
 level2boss_screen:
   jsr GameplayLevel
-  jsr read_controller
   jmp done
 level3title_screen:
-  jsr read_controller
   jmp done
 level3gameplay_screen:
   jsr GameplayLevel
-  jsr read_controller
   jmp done
 level3boss_screen:
   jsr GameplayLevel
-  jsr read_controller
   jmp done
 level4title_screen:
-  jsr read_controller
   jmp done
 level4gameplay_screen:
   jsr GameplayLevel
-  jsr read_controller
   jmp done
 level4boss_screen:
   jsr GameplayLevel
-  jsr read_controller
   jmp done
 ending_screen:
-  jsr read_controller
 
 done:
 
