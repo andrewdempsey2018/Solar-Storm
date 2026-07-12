@@ -2,6 +2,8 @@
 
 NES game
 
+Uses FamiTone2 audio library by Shiru
+
 ![alt text](image.png)
 
 OAM Map:
