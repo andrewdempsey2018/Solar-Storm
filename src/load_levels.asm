@@ -18,12 +18,20 @@
 .include "../data/level3_title_data.asm"
 .include "../data/level4_title_data.asm"
 .include "../data/ending_data.asm"
+.include "../sound/sounds.s"
+.include "../sound/after_the_rain.s"
+.include "../sound/danger_streets.s"
 
 .segment "CODE"
 
 
 .proc load_levels
   SAVE_REGISTERS
+; --------------------------------------------------
+; Stop music.
+; --------------------------------------------------
+  jsr FamiToneMusicStop
+
 ; --------------------------------------------------
 ; Turn off rendering.
 ; --------------------------------------------------
@@ -438,6 +446,13 @@ load_level1_gameplay_scene:
   sta attribs_pointer
   lda (attribs_hi_pointer), y
   sta attribs_pointer+1
+
+  ldx #<danger_streets_music_data
+	ldy #>danger_streets_music_data
+	lda NTSC_MODE_FAMITONE
+	jsr FamiToneInit
+	lda #0
+	jsr FamiToneMusicPlay
 
   jmp start_gameplay_level
 

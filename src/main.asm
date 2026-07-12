@@ -11,6 +11,7 @@
 .include "enemies.asm"
 .include "player_bullets.asm"
 .include "gameplay_level.asm"
+.include "lib/famitone2.s"
 
 .segment "ZEROPAGE"
 sleeping: .res 1
@@ -130,6 +131,8 @@ dont_render:
   lda #$00
   sta sleeping
 
+  jsr FamiToneUpdate
+
   RESTORE_REGISTERS
   rti                   ; return from interrupt
 .endproc
@@ -204,6 +207,22 @@ load_demoncore_screen_palettes:
 ; wait for another vblank before continuing
 ; --------------------------------------------------
   WAIT_VBLANK
+
+; --------------------------------------------------
+; Initialise FamiTone2.
+; --------------------------------------------------
+  ldx #<after_the_rain_music_data
+	ldy #>after_the_rain_music_data
+	lda NTSC_MODE_FAMITONE
+	jsr FamiToneInit
+	lda #0
+	jsr FamiToneMusicPlay
+
+	ldx #<sounds
+	ldy #>sounds
+	jsr FamiToneSfxInit
+
+  
 
 mainloop:
 
