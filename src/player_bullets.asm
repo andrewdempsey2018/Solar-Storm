@@ -270,6 +270,10 @@ check:
   lda #$00
   sta enemy_frame_number, x
 
+  lda #1
+	ldx #FT_SFX_CH0
+	jsr FamiToneSfxPlay
+
 ; --------------------------------------------------
 ; Play sound fx
 ; --------------------------------------------------
