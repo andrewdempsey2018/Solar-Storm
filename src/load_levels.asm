@@ -177,6 +177,18 @@ load_demoncore_screen_palettes:
 
   jsr init_nametable
 
+  txa
+  pha
+  tya
+  pha
+  lda #0
+	ldx #FT_SFX_CH0
+	jsr FamiToneSfxPlay
+  pla
+  tay
+  pla
+  tax
+
   jmp start_static_screen_level
 
 ; --------------------------------------------------

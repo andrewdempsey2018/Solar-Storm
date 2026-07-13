@@ -210,17 +210,17 @@ load_demoncore_screen_palettes:
 
 ; --------------------------------------------------
 ; Initialise FamiTone2.
+; Play sound effect for initial demoncore screen.
 ; --------------------------------------------------
-  ldx #<after_the_rain_music_data
-	ldy #>after_the_rain_music_data
 	lda NTSC_MODE_FAMITONE
 	jsr FamiToneInit
-	;lda #0
-	;jsr FamiToneMusicPlay
 
 	ldx #<sounds
 	ldy #>sounds
 	jsr FamiToneSfxInit
+  lda #0
+	ldx #FT_SFX_CH0
+	jsr FamiToneSfxPlay
 
   
 
