@@ -221,6 +221,13 @@ load_titlescreen_palettes:
 
   jsr init_nametable
 
+  ldx #<after_the_rain_music_data
+	ldy #>after_the_rain_music_data
+	lda NTSC_MODE_FAMITONE
+	jsr FamiToneInit
+	lda #0
+	jsr FamiToneMusicPlay
+
   jmp start_static_screen_level
 
 ; --------------------------------------------------

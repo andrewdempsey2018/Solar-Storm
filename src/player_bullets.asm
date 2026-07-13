@@ -252,6 +252,18 @@ check:
   lda #TIME_TO_DISPLAY_ENEMY_HIT_FRAME
   sta enemy_frame_number, x
 
+  txa
+  pha
+  tya
+  pha
+  lda #4
+	ldx #FT_SFX_CH0
+	jsr FamiToneSfxPlay
+  pla
+  tay
+  pla
+  tax
+
 ; Remove enemy & bullet.
   lda #$F0
   sta player_bullet_y, y
@@ -270,18 +282,20 @@ check:
   lda #$00
   sta enemy_frame_number, x
 
+; --------------------------------------------------
+; Play explosion sfx.
+; --------------------------------------------------
+  txa
+  pha
+  tya
+  pha
   lda #1
 	ldx #FT_SFX_CH0
 	jsr FamiToneSfxPlay
-
-; --------------------------------------------------
-; Play sound fx
-; --------------------------------------------------
-  ; play explosion sound effect (#00)
-  ; LDX #channel, LDA #which_sfx, JSR FamiToneSfxPlay
-  ;lda #$00 
-  ;ldx #$00 ; channel $00
-  ;jsr FamiToneSfxPlay
+  pla
+  tay
+  pla
+  tax
 
 enemy_has_health_remaining:
 enemy_is_exploding:

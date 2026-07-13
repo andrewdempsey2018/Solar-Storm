@@ -215,8 +215,8 @@ load_demoncore_screen_palettes:
 	ldy #>after_the_rain_music_data
 	lda NTSC_MODE_FAMITONE
 	jsr FamiToneInit
-	lda #0
-	jsr FamiToneMusicPlay
+	;lda #0
+	;jsr FamiToneMusicPlay
 
 	ldx #<sounds
 	ldy #>sounds

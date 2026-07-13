@@ -1,7 +1,5 @@
 ;FamiTone2 v1.12
 
-
-
 ;settings, uncomment or put them into your main program; the latter makes possible updates easier
 
 FT_BASE_ADR		= $0400	;page in the RAM used for FT2 variables, should be $xx00
