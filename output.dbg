@@ -34,7 +34,7 @@ file	id=30,name="src/player_bullets.asm",size=6906,mtime=0x6A548D0D,mod=0
 file	id=31,name="src/gameplay_level.asm",size=1339,mtime=0x6A4B4F7E,mod=0
 file	id=32,name="src/lib/famitone2.s",size=28868,mtime=0x6A548706,mod=0
 file	id=33,name="src/../chr/text.chr",size=8192,mtime=0x6A4B4F7E,mod=0
-file	id=34,name="src/../chr/level1.chr",size=8192,mtime=0x6A4B4F7E,mod=0
+file	id=34,name="src/../chr/level1.chr",size=8192,mtime=0x6A55252E,mod=0
 file	id=35,name="src/../chr/boss1.chr",size=8192,mtime=0x6A4B4F7E,mod=0
 file	id=36,name="src/../chr/level2.chr",size=8192,mtime=0x6A4B4F7E,mod=0
 file	id=37,name="src/../chr/boss2.chr",size=8192,mtime=0x6A4D40F8,mod=0
