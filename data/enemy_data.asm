@@ -4,22 +4,22 @@
 ; tiletl,attribtl,tiletr,attribtr,tilebl,attribbl,tilebr,attribbr
 ; --------------------------------------------------
 enemy_0_move_down_frame:
-  .byte $40,$00,$41,$00,$42,$00,$43,$00
+  .byte $C0,$00,$C1,$00,$D0,$00,$D1,$00
 enemy_0_move_left_frame:
-  .byte $50,$00,$51,$00,$42,$00,$43,$00
+  .byte $C0,$00,$C1,$00,$D0,$00,$D1,$00
 enemy_0_move_right_frame:
-  .byte $40,$00,$41,$00,$42,$00,$43,$00
+  .byte $C0,$00,$C1,$00,$D0,$00,$D1,$00
 enemy_0_hit_frame:
-  .byte $70,$00,$71,$00,$80,$00,$81,$00
+  .byte $E0,$00,$E1,$00,$F0,$00,$F1,$00
 
 enemy_1_move_down_frame:
-  .byte $44,$01,$45,$01,$46,$01,$47,$01
+  .byte $CA,$03,$CB,$03,$DA,$03,$DB,$03
 enemy_1_move_left_frame:
-  .byte $44,$01,$45,$01,$46,$01,$47,$01
+  .byte $AA,$03,$AB,$03,$BA,$03,$BB,$03
 enemy_1_move_right_frame:
-  .byte $44,$01,$45,$01,$46,$01,$47,$01
+  .byte $8A,$03,$8B,$03,$9A,$03,$9B,$03
 enemy_1_hit_frame:
-  .byte $72,$00,$73,$00,$82,$00,$83,$00
+  .byte $EA,$00,$EB,$00,$FA,$00,$FB,$00
 
 enemy_2_move_down_frame:
   .byte $60,$00,$61,$00,$62,$00,$63,$00
@@ -49,15 +49,15 @@ enemy_4_hit_frame:
   .byte $78,$00,$79,$00,$88,$00,$89,$00
 
 enemy_animated_0_frame_0:
-  .byte $48,$00,$49,$00,$4A,$00,$4B,$00
+  .byte $C2,$00,$C3,$00,$D2,$00,$D3,$00
 enemy_animated_0_frame_1:
-  .byte $58,$00,$59,$00,$5A,$00,$5B,$00
+  .byte $B2,$00,$B3,$00,$D2,$00,$D3,$00
 enemy_animated_0_frame_2:
-  .byte $48,$00,$49,$00,$4A,$00,$4B,$00
+  .byte $A2,$00,$A3,$00,$D2,$00,$D3,$00
 enemy_animated_0_frame_3:
-  .byte $58,$00,$59,$00,$5A,$00,$5B,$00
+  .byte $B2,$00,$B3,$00,$D2,$00,$D3,$00
 enemy_animated_0_hit_frame:
-  .byte $7A,$00,$7A,$00,$7A,$00,$7A,$00
+  .byte $E2,$00,$E3,$00,$F2,$00,$F3,$00
 
 enemy_animated_1_frame_0:
   .byte $48,$01,$49,$01,$4A,$01,$4B,$01
@@ -104,13 +104,13 @@ enemy_animated_4_hit_frame:
   .byte $10,$03,$10,$03,$10,$03,$10,$03
 
 explosion_frame_0:
-  .byte $90,$03,$91,$03,$A0,$03,$A1,$03
+  .byte $20,$02,$21,$02,$30,$02,$31,$02
 explosion_frame_1:
-  .byte $92,$03,$93,$03,$A2,$03,$A3,$03
+  .byte $22,$02,$23,$02,$32,$02,$33,$02
 explosion_frame_2:
-  .byte $94,$03,$95,$03,$A4,$03,$A5,$03
+  .byte $24,$02,$25,$02,$34,$02,$35,$02
 explosion_frame_3:
-  .byte $96,$03,$97,$03,$A6,$03,$A7,$03
+  .byte $26,$02,$27,$02,$36,$02,$37,$02
 
 ; --------------------------------------------------
 ; Address of each frame that will be used in
@@ -307,7 +307,7 @@ frames_hi_table:
 ; --------------------------------------------------
 ; Enemy data tables
 ; spawn_enemy_xpos_table, spawn_enemy_ypos_table - x and y positions of enemy when it is first spawned
-; spawn_enemy_type_table - the specific enemy type to spawn (0-5)
+; spawn_enemy_type_table - the specific enemy type to spawn (0-4 move down/lef/right) (5-9 animated)
 ; spawn_enemy_qty_table - quantity of enemies to spawn (0-5)
 ; spawn_enemy_wait_table - time to wait for next spawn (1-255)
 ; spawn_enemy_path_table - the flight path the enemy flies when it is alive (0-6)
@@ -349,8 +349,7 @@ spawn_enemy_ypos_table:
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 
 spawn_enemy_type_table:
-.byte $05,$06,$07,$08,$09,$05,$05,$05,$05,$05,$05,$05,$05,$05,$05,$05
-  ;.byte $00,$01,$02,$03,$04,$00,$00,$00,$00,$05,$06,$07,$08,$09,$00,$00
+  .byte $05,$05,$05,$05,$05,$05,$05,$05,$05,$05,$05,$05,$05,$05,$05,$05
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
@@ -368,7 +367,7 @@ spawn_enemy_type_table:
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 
 spawn_enemy_path_table:
-  .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+  .byte $01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00

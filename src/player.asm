@@ -6,16 +6,16 @@ player_flame_frame: .res 1
 
 .segment "RODATA"
 player_top_left:
-  .byte $01, $26, $28
+  .byte $02, $04, $06
 player_top_right:
-  .byte $02, $27, $29
+  .byte $03, $05, $07
 player_bottom_left:
-  .byte $11, $36, $38
+  .byte $12, $14, $16
 player_bottom_right:
-  .byte $12, $37, $39
+  .byte $13, $15, $17
 
 player_flame_frames_data:
-  .byte $00, $2A, $00, $2B, $00, $2C
+  .byte $00, $08, $00, $09, $00, $0A
 
 .segment "CODE"
 
@@ -133,7 +133,7 @@ draw_flame:
   sta $0214
   lda player_flame_frames_data, x
   sta $0215
-  lda #$03
+  lda #$02
   sta $0216
   lda player_x
   clc

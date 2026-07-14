@@ -145,15 +145,16 @@ AttribsHigh:
   .byte >Screen1Attrib,>Screen2Attrib,>Screen3Attrib,>Screen1Attrib,>Screen2Attrib,>Screen3Attrib,>Screen1Attrib,>Screen2Attrib,>Screen3Attrib,>Screen1Attrib,>Screen2Attrib,>Screen3Attrib,>Screen1Attrib,>Screen2Attrib,>Screen3Attrib
 
 PaletteTable:
-  .byte $21,$27,$17,$07 ; bg
+; bg
+  .byte $21,$27,$17,$07
   .byte $21,$20,$11,$31
   .byte $21,$04,$14,$34
   .byte $21,$19,$29,$39
   
-  .byte $21,$00,$10,$30
-  .byte $21,$01,$21,$31
-  .byte $21,$06,$16,$26
-  .byte $21,$26,$27,$38
-
+; sprites
+  .byte $21,$00,$10,$20 ; grey
+  .byte $21,$1a,$2a,$3a ; green
+  .byte $21,$16,$27,$36 ; orange
+  .byte $21,$15,$25,$35 ; pink
 
 .endscope
