@@ -52,6 +52,7 @@ clear_oam:
   sta zp_scratch_1
   sta zp_scratch_1+1
   sta zp_scratch_02
+  sta zp_scratch_03
   sta screen_counter
   
   sta screens_lo_pointer

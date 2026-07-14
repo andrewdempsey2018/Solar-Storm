@@ -11,7 +11,7 @@
 ENEMY_OAM_START = $0218
 NUMBER_OF_ENEMIES = 5
 EXPLOSION_FRAME_COUNT = 4
-EXPLOSION_FRAME_OFFSET = 48
+EXPLOSION_FRAME_OFFSET = 80
 ANIMATED_ENEMY_FRAME_OFFSET = 40
 ENEMY_MOVING_LEFT_FRAME_OFFSET = 1
 ENEMY_MOVING_RIGHT_FRAME_OFFSET = 2
@@ -231,7 +231,9 @@ enemy_hit:
   dec enemy_frame_number, x
   lda enemy_frame_number, x
   cmp #0
-  bne done_setting_animation_frame
+  beq :+
+  jmp done_setting_animation_frame
+:
   lda enemy_flags, x
   eor #ENEMY_HIT
   sta enemy_flags, x
@@ -281,9 +283,10 @@ enemy_type_animated:
   sta enemy_frame_number, x
 
 draw_animation_frame:
+  ldy enemy_type, x
   lda enemy_frame_number, x
   clc
-  adc #ANIMATED_ENEMY_FRAME_OFFSET
+  adc enemy_frames_offset_table, y
   sta enemy_frame_to_draw
   jmp done_setting_animation_frame
 

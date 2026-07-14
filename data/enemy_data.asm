@@ -49,15 +49,59 @@ enemy_4_hit_frame:
   .byte $78,$00,$79,$00,$88,$00,$89,$00
 
 enemy_animated_0_frame_0:
-  .byte $48,$02,$49,$02,$4A,$02,$4B,$02
+  .byte $48,$00,$49,$00,$4A,$00,$4B,$00
 enemy_animated_0_frame_1:
-  .byte $58,$02,$59,$02,$5A,$02,$5B,$02
+  .byte $58,$00,$59,$00,$5A,$00,$5B,$00
 enemy_animated_0_frame_2:
-  .byte $48,$02,$49,$02,$4A,$02,$4B,$02
+  .byte $48,$00,$49,$00,$4A,$00,$4B,$00
 enemy_animated_0_frame_3:
-  .byte $58,$02,$59,$02,$5A,$02,$5B,$02
+  .byte $58,$00,$59,$00,$5A,$00,$5B,$00
 enemy_animated_0_hit_frame:
   .byte $7A,$00,$7A,$00,$7A,$00,$7A,$00
+
+enemy_animated_1_frame_0:
+  .byte $48,$01,$49,$01,$4A,$01,$4B,$01
+enemy_animated_1_frame_1:
+  .byte $58,$01,$59,$01,$5A,$01,$5B,$01
+enemy_animated_1_frame_2:
+  .byte $48,$01,$49,$01,$4A,$01,$4B,$01
+enemy_animated_1_frame_3:
+  .byte $58,$01,$59,$01,$5A,$01,$5B,$01
+enemy_animated_1_hit_frame:
+  .byte $7A,$01,$7A,$01,$7A,$01,$7A,$01
+
+enemy_animated_2_frame_0:
+  .byte $48,$02,$49,$02,$4A,$02,$4B,$02
+enemy_animated_2_frame_1:
+  .byte $58,$02,$59,$02,$5A,$02,$5B,$02
+enemy_animated_2_frame_2:
+  .byte $48,$02,$49,$02,$4A,$02,$4B,$02
+enemy_animated_2_frame_3:
+  .byte $58,$02,$59,$02,$5A,$02,$5B,$02
+enemy_animated_2_hit_frame:
+  .byte $7A,$00,$7A,$00,$7A,$00,$7A,$00
+
+enemy_animated_3_frame_0:
+  .byte $48,$03,$49,$03,$4A,$03,$4B,$03
+enemy_animated_3_frame_1:
+  .byte $58,$03,$59,$03,$5A,$03,$5B,$03
+enemy_animated_3_frame_2:
+  .byte $48,$03,$49,$03,$4A,$03,$4B,$03
+enemy_animated_3_frame_3:
+  .byte $58,$03,$59,$03,$5A,$03,$5B,$03
+enemy_animated_3_hit_frame:
+  .byte $7A,$00,$7A,$00,$7A,$00,$7A,$00
+
+enemy_animated_4_frame_0:
+  .byte $90,$03,$91,$03,$A0,$03,$A1,$03
+enemy_animated_4_frame_1:
+  .byte $92,$03,$93,$03,$A2,$03,$A3,$03
+enemy_animated_4_frame_2:
+  .byte $94,$03,$95,$03,$A4,$03,$A5,$03
+enemy_animated_4_frame_3:
+  .byte $96,$03,$97,$03,$A6,$03,$A7,$03
+enemy_animated_4_hit_frame:
+  .byte $10,$03,$10,$03,$10,$03,$10,$03
 
 explosion_frame_0:
   .byte $90,$03,$91,$03,$A0,$03,$A1,$03
@@ -129,6 +173,38 @@ frames_lo_table:
   .byte $FF
   .byte $FF
   .byte <enemy_animated_0_hit_frame
+  .byte <enemy_animated_1_frame_0
+  .byte <enemy_animated_1_frame_1
+  .byte <enemy_animated_1_frame_2
+  .byte <enemy_animated_1_frame_3
+  .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte <enemy_animated_1_hit_frame
+  .byte <enemy_animated_2_frame_0
+  .byte <enemy_animated_2_frame_1
+  .byte <enemy_animated_2_frame_2
+  .byte <enemy_animated_2_frame_3
+  .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte <enemy_animated_2_hit_frame
+  .byte <enemy_animated_3_frame_0
+  .byte <enemy_animated_3_frame_1
+  .byte <enemy_animated_3_frame_2
+  .byte <enemy_animated_3_frame_3
+  .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte <enemy_animated_3_hit_frame
+  .byte <enemy_animated_4_frame_0
+  .byte <enemy_animated_4_frame_1
+  .byte <enemy_animated_4_frame_2
+  .byte <enemy_animated_4_frame_3
+  .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte <enemy_animated_4_hit_frame
   .byte <explosion_frame_0
   .byte <explosion_frame_1
   .byte <explosion_frame_2
@@ -187,6 +263,38 @@ frames_hi_table:
   .byte $FF
   .byte $FF
   .byte >enemy_animated_0_hit_frame
+  .byte >enemy_animated_1_frame_0
+  .byte >enemy_animated_1_frame_1
+  .byte >enemy_animated_1_frame_2
+  .byte >enemy_animated_1_frame_3
+  .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte >enemy_animated_1_hit_frame
+  .byte >enemy_animated_2_frame_0
+  .byte >enemy_animated_2_frame_1
+  .byte >enemy_animated_2_frame_2
+  .byte >enemy_animated_2_frame_3
+  .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte >enemy_animated_2_hit_frame
+  .byte >enemy_animated_3_frame_0
+  .byte >enemy_animated_3_frame_1
+  .byte >enemy_animated_3_frame_2
+  .byte >enemy_animated_3_frame_3
+  .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte >enemy_animated_3_hit_frame
+  .byte >enemy_animated_4_frame_0
+  .byte >enemy_animated_4_frame_1
+  .byte >enemy_animated_4_frame_2
+  .byte >enemy_animated_4_frame_3
+  .byte $FF
+  .byte $FF
+  .byte $FF
+  .byte >enemy_animated_4_hit_frame
   .byte >explosion_frame_0
   .byte >explosion_frame_1
   .byte >explosion_frame_2
@@ -241,8 +349,9 @@ spawn_enemy_ypos_table:
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 
 spawn_enemy_type_table:
-  .byte $00,$00,$00,$01,$01,$01,$02,$02,$02,$03,$03,$03,$04,$04,$04,$05
-  .byte $05,$05,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+.byte $05,$06,$07,$08,$09,$05,$05,$05,$05,$05,$05,$05,$05,$05,$05,$05
+  ;.byte $00,$01,$02,$03,$04,$00,$00,$00,$00,$05,$06,$07,$08,$09,$00,$00
+  .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
@@ -259,8 +368,8 @@ spawn_enemy_type_table:
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 
 spawn_enemy_path_table:
-  .byte $00,$00,$01,$01,$02,$02,$03,$03,$04,$04,$05,$05,$06,$06,$06,$06
-  .byte $06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06,$06
+  .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
+  .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
@@ -414,3 +523,15 @@ enemy_path_data_action_lo_table:
 enemy_path_data_action_hi_table:
   .byte >enemy_path_0_action_table,>enemy_path_1_action_table,>enemy_path_2_action_table,>enemy_path_3_action_table,>enemy_path_4_action_table,>enemy_path_5_action_table
   .byte >enemy_path_6_action_table
+
+; --------------------------------------------------
+; Offset into the enemy animation frames tables to
+; get the correct animation frame to draw.
+; First 5 bytes are filler but better animation code
+; in general would probably better utilise this
+; table - no need to calculate animation frame number
+; for enemies that move down/left/right.
+; Animation code could be better in general.
+; --------------------------------------------------
+enemy_frames_offset_table:
+  .byte $FF,$FF,$FF,$FF,$FF,$28,$30,$38,$40,$48
