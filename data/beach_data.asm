@@ -150,11 +150,11 @@ PaletteTable:
   .byte $21,$20,$11,$31
   .byte $21,$04,$14,$34
   .byte $21,$19,$29,$39
-  
+
 ; sprites
   .byte $21,$00,$10,$20 ; grey
-  .byte $21,$1a,$2a,$3a ; green
-  .byte $21,$16,$27,$36 ; orange
+  .byte $21,$09,$1a,$3a ; green
+  .byte $21,$17,$27,$38 ; orange
   .byte $21,$15,$25,$35 ; pink
 
 .endscope

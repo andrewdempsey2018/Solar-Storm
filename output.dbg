@@ -10,7 +10,7 @@ file	id=6,name="src/load_row.asm",size=5349,mtime=0x6A4B4F7E,mod=0
 file	id=7,name="src/ClearOAM.asm",size=208,mtime=0x6A4B4F7E,mod=0
 file	id=8,name="src/init_nametable.asm",size=1589,mtime=0x6A4B4F7E,mod=0
 file	id=9,name="src/load_levels.asm",size=28307,mtime=0x6A548E0E,mod=0
-file	id=10,name="src/../data/beach_data.asm",size=8401,mtime=0x6A56894D,mod=0
+file	id=10,name="src/../data/beach_data.asm",size=8399,mtime=0x6A5728D9,mod=0
 file	id=11,name="src/../data/station_data.asm",size=8996,mtime=0x6A4B4F7E,mod=0
 file	id=12,name="src/../data/ceres_data.asm",size=8766,mtime=0x6A4B4F7E,mod=0
 file	id=13,name="src/../data/space_data.asm",size=8764,mtime=0x6A4B4F7E,mod=0
@@ -29,12 +29,12 @@ file	id=25,name="src/../sound/after_the_rain.s",size=29044,mtime=0x6A53C690,mod=
 file	id=26,name="src/../sound/danger_streets.s",size=26448,mtime=0x6A53C6F8,mod=0
 file	id=27,name="src/player.asm",size=2313,mtime=0x6A56899D,mod=0
 file	id=28,name="src/enemies.asm",size=14866,mtime=0x6A55E0AC,mod=0
-file	id=29,name="src/../data/enemy_data.asm",size=21091,mtime=0x6A569079,mod=0
+file	id=29,name="src/../data/enemy_data.asm",size=21091,mtime=0x6A572BF9,mod=0
 file	id=30,name="src/player_bullets.asm",size=6906,mtime=0x6A5689CE,mod=0
 file	id=31,name="src/gameplay_level.asm",size=1339,mtime=0x6A4B4F7E,mod=0
 file	id=32,name="src/lib/famitone2.s",size=28868,mtime=0x6A548708,mod=0
 file	id=33,name="src/../chr/text.chr",size=8192,mtime=0x6A4B4F7E,mod=0
-file	id=34,name="src/../chr/level1.chr",size=8192,mtime=0x6A568317,mod=0
+file	id=34,name="src/../chr/level1.chr",size=8192,mtime=0x6A572C9D,mod=0
 file	id=35,name="src/../chr/boss1.chr",size=8192,mtime=0x6A4B4F7E,mod=0
 file	id=36,name="src/../chr/level2.chr",size=8192,mtime=0x6A4B4F7E,mod=0
 file	id=37,name="src/../chr/boss2.chr",size=8192,mtime=0x6A4D40F8,mod=0
