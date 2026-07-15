@@ -3,6 +3,8 @@
 ; sprites/animation frames.
 ; tiletl,attribtl,tiletr,attribtr,tilebl,attribbl,tilebr,attribbr
 ; --------------------------------------------------
+
+; tank, grey
 enemy_0_move_down_frame:
   .byte $C0,$00,$C1,$00,$D0,$00,$D1,$00
 enemy_0_move_left_frame:
@@ -12,6 +14,7 @@ enemy_0_move_right_frame:
 enemy_0_hit_frame:
   .byte $E0,$00,$E1,$00,$F0,$00,$F1,$00
 
+; star, pink
 enemy_1_move_down_frame:
   .byte $CA,$03,$CB,$03,$DA,$03,$DB,$03
 enemy_1_move_left_frame:
@@ -21,6 +24,7 @@ enemy_1_move_right_frame:
 enemy_1_hit_frame:
   .byte $EA,$00,$EB,$00,$FA,$00,$FB,$00
 
+; unused
 enemy_2_move_down_frame:
   .byte $60,$00,$61,$00,$62,$00,$63,$00
 enemy_2_move_left_frame:
@@ -30,6 +34,7 @@ enemy_2_move_right_frame:
 enemy_2_hit_frame:
   .byte $78,$00,$79,$00,$88,$00,$89,$00
 
+; unused
 enemy_3_move_down_frame:
   .byte $40,$00,$41,$00,$42,$00,$43,$00
 enemy_3_move_left_frame:
@@ -39,6 +44,7 @@ enemy_3_move_right_frame:
 enemy_3_hit_frame:
   .byte $78,$00,$79,$00,$88,$00,$89,$00
 
+; unused
 enemy_4_move_down_frame:
   .byte $40,$00,$41,$00,$42,$00,$43,$00
 enemy_4_move_left_frame:
@@ -48,6 +54,7 @@ enemy_4_move_right_frame:
 enemy_4_hit_frame:
   .byte $78,$00,$79,$00,$88,$00,$89,$00
 
+; viper, grey
 enemy_animated_0_frame_0:
   .byte $C2,$00,$C3,$00,$D2,$00,$D3,$00
 enemy_animated_0_frame_1:
@@ -59,28 +66,31 @@ enemy_animated_0_frame_3:
 enemy_animated_0_hit_frame:
   .byte $E2,$00,$E3,$00,$F2,$00,$F3,$00
 
+; ball, orange
 enemy_animated_1_frame_0:
-  .byte $48,$01,$49,$01,$4A,$01,$4B,$01
+  .byte $A8,$02,$A9,$02,$B8,$02,$B9,$02
 enemy_animated_1_frame_1:
-  .byte $58,$01,$59,$01,$5A,$01,$5B,$01
+  .byte $C8,$02,$C9,$02,$D8,$02,$D9,$02
 enemy_animated_1_frame_2:
-  .byte $48,$01,$49,$01,$4A,$01,$4B,$01
+  .byte $A8,$02,$A9,$02,$B8,$02,$B9,$02
 enemy_animated_1_frame_3:
-  .byte $58,$01,$59,$01,$5A,$01,$5B,$01
+  .byte $C8,$02,$C9,$02,$D8,$02,$D9,$02
 enemy_animated_1_hit_frame:
-  .byte $7A,$01,$7A,$01,$7A,$01,$7A,$01
+  .byte $E8,$00,$E9,$00,$F8,$00,$F9,$00
 
+; body, grey
 enemy_animated_2_frame_0:
-  .byte $48,$02,$49,$02,$4A,$02,$4B,$02
+  .byte $86,$00,$87,$00,$96,$00,$97,$00
 enemy_animated_2_frame_1:
-  .byte $58,$02,$59,$02,$5A,$02,$5B,$02
+  .byte $A6,$00,$A7,$00,$B6,$00,$B7,$00
 enemy_animated_2_frame_2:
-  .byte $48,$02,$49,$02,$4A,$02,$4B,$02
+  .byte $C6,$00,$C7,$00,$D6,$00,$D7,$00
 enemy_animated_2_frame_3:
-  .byte $58,$02,$59,$02,$5A,$02,$5B,$02
+  .byte $A6,$00,$A7,$00,$B6,$00,$B7,$00
 enemy_animated_2_hit_frame:
-  .byte $7A,$00,$7A,$00,$7A,$00,$7A,$00
+  .byte $E6,$00,$E7,$00,$F6,$00,$F7,$00
 
+; unused
 enemy_animated_3_frame_0:
   .byte $48,$03,$49,$03,$4A,$03,$4B,$03
 enemy_animated_3_frame_1:
@@ -92,6 +102,7 @@ enemy_animated_3_frame_3:
 enemy_animated_3_hit_frame:
   .byte $7A,$00,$7A,$00,$7A,$00,$7A,$00
 
+; unused
 enemy_animated_4_frame_0:
   .byte $90,$03,$91,$03,$A0,$03,$A1,$03
 enemy_animated_4_frame_1:
@@ -349,7 +360,7 @@ spawn_enemy_ypos_table:
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
 
 spawn_enemy_type_table:
-  .byte $01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01,$01
+  .byte $07,$07,$07,$07,$07,$07,$07,$07,$07,$06,$06,$06,$06,$06,$06,$06
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
   .byte $00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
