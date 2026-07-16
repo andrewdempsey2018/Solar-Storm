@@ -134,11 +134,15 @@ enemy_on_screen:
 dont_need_new_data:
 
 ; --------------------------------------------------
-; Set aliases used for updating enemy position
+; Set aliases used for updating enemy position,
+; performing special actions.
 ; --------------------------------------------------
-  path = zp_scratch_1
+  path_data = zp_scratch_1
   enemy_x_velocity = zp_scratch_0
   enemy_y_velocity = zp_scratch_02
+; do_once - ensure certain special actions 9such as shooting)
+; are only carried out once per path index change
+  do_once = zp_scratch_03
 
 ; --------------------------------------------------
 ; Determine if the enemy is required to do any special
@@ -148,29 +152,55 @@ dont_need_new_data:
 ; --------------------------------------------------
   ldy enemy_path, x
   lda enemy_path_data_action_lo_table, y
-  sta path
+  sta path_data
   lda enemy_path_data_action_hi_table, y
-  sta path+1
+  sta path_data+1
   
+
   ldy enemy_path_index, x
-  lda (path), y
+  lda (path_data), y
+
+; path index is zero, therefore do_once can be reset
+  cmp #$00
+  bne dont_reset_do_once
+  sta do_once
+dont_reset_do_once:
+
+; reset path index
   cmp #$80
   bne dont_reset_path_index
   lda #$00
   sta enemy_path_index, x
 dont_reset_path_index:
 
+; enemy shoots straight down
+  cmp #$01
+  bne dont_shoot
+  lda do_once
+  cmp #$00
+  bne dont_shoot
+  
+; set this to 1, ensures enemy does not shoot multiple times
+  lda #$01
+  sta do_once
+
+  lda enemy_x_hi, x
+  clc
+  adc #5
+  sta enemy_x_hi, x
+dont_shoot:
+
 ; --------------------------------------------------
 ; Get x speed
 ; --------------------------------------------------
   ldy enemy_path, x
   lda enemy_path_data_x_lo_table, y
-  sta path
+  sta path_data
   lda enemy_path_data_x_hi_table, y
-  sta path+1
+  sta path_data+1
   
   ldy enemy_path_index, x
-  lda (path), y
+  lda (path_data), y
 
   sta enemy_x_velocity
 
@@ -179,12 +209,12 @@ dont_reset_path_index:
 ; --------------------------------------------------
   ldy enemy_path, x
   lda enemy_path_data_y_lo_table, y
-  sta path
+  sta path_data
   lda enemy_path_data_y_hi_table, y
-  sta path+1
+  sta path_data+1
   
   ldy enemy_path_index, x
-  lda (path), y
+  lda (path_data), y
 
   sta enemy_y_velocity
 
