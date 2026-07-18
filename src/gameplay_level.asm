@@ -2,6 +2,7 @@
 
 .proc GameplayLevel
 ; --------------------------------------------------
+; Does not need to save/restore registers.
 ; Spawing enemies
 ; Read the general purpose timer. Every 32 frames decrement
 ; the enemy_spawn_wait time
@@ -40,6 +41,7 @@ dont_spawn:
 ; process enemies
 ; --------------------------------------------------
   jsr ProcessEnemeies
+  jsr ProcessEnemyBullets
 
 ; --------------------------------------------------
 ; 

@@ -124,16 +124,6 @@ enemy_alive:
 enemy_on_screen:
 
 ; --------------------------------------------------
-; Every 16 frames, get a new value from the enemy 
-; data tables
-; --------------------------------------------------
-  lda timer
-  and #%00001111
-  bne dont_need_new_data
-  inc enemy_path_index, x
-dont_need_new_data:
-
-; --------------------------------------------------
 ; Set aliases used for updating enemy position,
 ; performing special actions.
 ; --------------------------------------------------
@@ -143,6 +133,18 @@ dont_need_new_data:
 ; do_once - ensure certain special actions 9such as shooting)
 ; are only carried out once per path index change
   do_once = zp_scratch_03
+
+; --------------------------------------------------
+; Every 16 frames, get a new value from the enemy 
+; data tables
+; --------------------------------------------------
+  lda timer
+  and #%00001111
+  bne dont_need_new_data
+  inc enemy_path_index, x
+  lda #0
+  sta do_once
+dont_need_new_data:
 
 ; --------------------------------------------------
 ; Determine if the enemy is required to do any special
@@ -159,12 +161,6 @@ dont_need_new_data:
 
   ldy enemy_path_index, x
   lda (path_data), y
-
-; path index is zero, therefore do_once can be reset
-  cmp #$00
-  bne dont_reset_do_once
-  sta do_once
-dont_reset_do_once:
 
 ; reset path index
   cmp #$80
@@ -184,10 +180,7 @@ dont_reset_path_index:
   lda #$01
   sta do_once
 
-  lda enemy_x_hi, x
-  clc
-  adc #5
-  sta enemy_x_hi, x
+  jsr ShootEnemyBullets
 dont_shoot:
 
 ; --------------------------------------------------

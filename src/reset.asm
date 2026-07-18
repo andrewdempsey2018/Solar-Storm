@@ -96,6 +96,23 @@ clear_bullet_loop:
   sta player_bullet_spawn_number
 
 ; --------------------------------------------------
+; Clear memory related to enemy bullets
+; --------------------------------------------------
+  lda #$00
+  ldx #$00
+clear_enemy_bullet_loop:
+  sta enemy_bullet_x
+  sta enemy_bullet_y
+  sta enemy_bullet_flags
+  sta enemy_bullet_frame_number
+  inx
+  cpx #NUMBER_OF_ENEMY_BULLETS
+  bne clear_enemy_bullet_loop
+
+  sta current_enemy_bullet
+  sta enemy_bullet_spawn_number
+
+; --------------------------------------------------
 ; clear BSS memory.
 ; --------------------------------------------------
   lda #0

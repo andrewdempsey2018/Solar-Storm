@@ -9,6 +9,7 @@
 .include "load_levels.asm"
 .include "player.asm"
 .include "enemies.asm"
+.include "enemy_bullets.asm"
 .include "player_bullets.asm"
 .include "gameplay_level.asm"
 .include "lib/famitone2.s"
