@@ -180,7 +180,7 @@ shoot_bullet:
   sta enemy_bullet_y, y
 
   ldx enemy_bullet_spawn_number
-  lda #ENEMY_BULLET_ALIVE
+  ora #ENEMY_BULLET_ALIVE
   sta enemy_bullet_flags, y
 
 
