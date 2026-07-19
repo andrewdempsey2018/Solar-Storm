@@ -7,6 +7,8 @@
 ; animation table
 ; ANIMATED_ENEMY_FRAME_OFFSET first animated enemy
 ; frame in animation table
+; ENEMY_CAN_SHOOT/ENEMY_CANNOT_SHOOT - boolean to
+; control the spawn rate of enemy shots
 ; --------------------------------------------------
 ENEMY_OAM_START = $0218
 NUMBER_OF_ENEMIES = 5
@@ -17,6 +19,8 @@ ENEMY_MOVING_RIGHT_FRAME_OFFSET = 2
 ENEMY_WIDTH = 16
 ENEMY_HEIGHT = 16
 TIME_TO_DISPLAY_ENEMY_HIT_FRAME = 5
+ENEMY_CAN_SHOOT = 1
+ENEMY_CANNOT_SHOOT = 0
 
 ; --------------------------------------------------
 ; enemy flags
@@ -130,9 +134,9 @@ enemy_on_screen:
   path_data = zp_scratch_1
   enemy_x_velocity = zp_scratch_0
   enemy_y_velocity = zp_scratch_02
-; do_once - ensure certain special actions 9such as shooting)
-; are only carried out once per path index change
-  do_once = zp_scratch_03
+; can_shoot - used like boolean to ensure enemies only
+; shoot once per index change
+  can_shoot = zp_scratch_03
 
 ; --------------------------------------------------
 ; Every 16 frames, get a new value from the enemy 
@@ -142,8 +146,8 @@ enemy_on_screen:
   and #%00001111
   bne dont_need_new_data
   inc enemy_path_index, x
-  lda #0
-  sta do_once
+  lda #ENEMY_CAN_SHOOT
+  sta can_shoot
 dont_need_new_data:
 
 ; --------------------------------------------------
@@ -172,13 +176,13 @@ dont_reset_path_index:
 ; enemy shoots straight down
   cmp #$01
   bne dont_shoot
-  lda do_once
-  cmp #$00
+  lda can_shoot
+  cmp #ENEMY_CAN_SHOOT
   bne dont_shoot
-  
+
 ; set this to 1, ensures enemy does not shoot multiple times
-  lda #$01
-  sta do_once
+  lda #ENEMY_CANNOT_SHOOT
+  sta can_shoot
 
   jsr ShootEnemyBullets
 dont_shoot:

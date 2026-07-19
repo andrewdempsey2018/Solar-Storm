@@ -111,7 +111,7 @@ bullet_on_screen:
 ; --------------------------------------------------
   lda enemy_bullet_y, x
   clc
-  adc #4 ; bullet velocity
+  adc #3 ; bullet velocity
   sta enemy_bullet_y, x
 
 ; --------------------------------------------------
@@ -171,8 +171,12 @@ shoot_bullet:
   ldy enemy_bullet_spawn_number
 
   lda enemy_x_hi, x
+  clc
+  adc #4
   sta enemy_bullet_x, y
   lda enemy_y_hi, x
+  clc
+  adc #4
   sta enemy_bullet_y, y
 
   ldx enemy_bullet_spawn_number
