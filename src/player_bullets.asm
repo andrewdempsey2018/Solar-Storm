@@ -155,9 +155,7 @@ done:
 .proc ShootPlayerBullets
   SAVE_REGISTERS
 
-  lda buttons_pressed
-  and #BTN_B
-  beq done
+
 
   inc player_bullet_spawn_number
   lda player_bullet_spawn_number

@@ -47,8 +47,11 @@ dont_spawn:
 ; 
 ; --------------------------------------------------
   jsr ProcessPlayerBullets
+    lda buttons_pressed
+  and #BTN_B
+  beq :+
   jsr ShootPlayerBullets
-
+:
 ; --------------------------------------------------
 ; 
 ; --------------------------------------------------

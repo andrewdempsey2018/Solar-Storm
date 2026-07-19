@@ -111,7 +111,7 @@ bullet_on_screen:
 ; --------------------------------------------------
   lda enemy_bullet_y, x
   clc
-  adc #3 ; bullet velocity
+  adc #4 ; bullet velocity
   sta enemy_bullet_y, x
 
 ; --------------------------------------------------
