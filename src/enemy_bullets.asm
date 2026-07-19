@@ -107,7 +107,7 @@ enemy_bullet_alive:
 bullet_on_screen:
 
 ; --------------------------------------------------
-; Update enemy bulley y position
+; Update enemy bullet y position
 ; --------------------------------------------------
   lda enemy_bullet_y, x
   clc

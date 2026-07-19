@@ -155,8 +155,6 @@ done:
 .proc ShootPlayerBullets
   SAVE_REGISTERS
 
-
-
   inc player_bullet_spawn_number
   lda player_bullet_spawn_number
   cmp #NUMBER_OF_PLAYER_BULLETS

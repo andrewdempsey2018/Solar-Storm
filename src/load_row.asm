@@ -140,7 +140,7 @@ DontLoadAttrib:
   asl a                 ; multiply by 16
   tay                   ; y now contains the address of the first element of the row
   
-  sta zp_scratch_0
+  sta zp_scratch_00
 
   ldx #$FF
 fill_top_row:
@@ -154,8 +154,8 @@ fill_top_row:
   iny
   lda (metatile_top_pointer), y
   sta row_data, x
-  inc zp_scratch_0
-  ldy zp_scratch_0
+  inc zp_scratch_00
+  ldy zp_scratch_00
   cpx #$1F              ; 32 top tiles
   bne fill_top_row
 
@@ -166,7 +166,7 @@ fill_top_row:
   asl a
   asl a                 ; multiply by 16
   tay                   ; y now contains the address of the first element
-  sta zp_scratch_0
+  sta zp_scratch_00
   ;;;
 
 fill_bottom_row:
@@ -180,8 +180,8 @@ fill_bottom_row:
   iny
   lda (metatile_bottom_pointer), y
   sta row_data, x
-  inc zp_scratch_0
-  ldy zp_scratch_0
+  inc zp_scratch_00
+  ldy zp_scratch_00
   cpx #$3F              ; 32 top tiles
   bne fill_bottom_row
 

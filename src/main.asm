@@ -32,12 +32,13 @@ metatile_row_number: .res 1
 ; --------------------------------------------------
 ; scratch area
 ; --------------------------------------------------
-zp_scratch_0: .res 1
-zp_scratch_1: .res 2
+zp_scratch_00: .res 1
+zp_scratch_01: .res 2
+zp_scratch_01_lo = zp_scratch_01
+zp_scratch_01_hi = zp_scratch_01+1
 zp_scratch_02: .res 1
 zp_scratch_03: .res 1
-zp_scratch_1_lo = zp_scratch_1
-zp_scratch_1_hi = zp_scratch_1+1
+zp_scratch_04: .res 1
 
 do_render: .res 1
 do_scroll: .res 1

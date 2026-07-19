@@ -48,11 +48,12 @@ clear_oam:
   sta prep_next_row
 
   lda #$00
-  sta zp_scratch_0
-  sta zp_scratch_1
-  sta zp_scratch_1+1
+  sta zp_scratch_00
+  sta zp_scratch_01
+  sta zp_scratch_01+1
   sta zp_scratch_02
   sta zp_scratch_03
+  sta zp_scratch_04
   sta screen_counter
   
   sta screens_lo_pointer

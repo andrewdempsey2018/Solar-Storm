@@ -131,8 +131,8 @@ enemy_on_screen:
 ; Set aliases used for updating enemy position,
 ; performing special actions.
 ; --------------------------------------------------
-  path_data = zp_scratch_1
-  enemy_x_velocity = zp_scratch_0
+  path_data = zp_scratch_01
+  enemy_x_velocity = zp_scratch_00
   enemy_y_velocity = zp_scratch_02
 ; can_shoot - used like boolean to ensure enemies only
 ; shoot once per index change
@@ -161,12 +161,11 @@ dont_need_new_data:
   sta path_data
   lda enemy_path_data_action_hi_table, y
   sta path_data+1
-  
 
   ldy enemy_path_index, x
-  lda (path_data), y
-
+  
 ; reset path index
+  lda (path_data), y
   cmp #$80
   bne dont_reset_path_index
   lda #$00
@@ -174,8 +173,9 @@ dont_need_new_data:
 dont_reset_path_index:
 
 ; enemy shoots straight down
-  cmp #$01
-  bne dont_shoot
+  lda (path_data), y
+  cmp #$00
+  beq dont_shoot
   lda can_shoot
   cmp #ENEMY_CAN_SHOOT
   bne dont_shoot
@@ -185,6 +185,7 @@ dont_reset_path_index:
   sta can_shoot
 
   jsr ShootEnemyBullets
+
 dont_shoot:
 
 ; --------------------------------------------------
@@ -493,20 +494,20 @@ done:
 ; --------------------------------------------------
   ldy enemy_frame_to_draw
   lda frames_lo_table, y
-  sta zp_scratch_1_lo
+  sta zp_scratch_01_lo
   lda frames_hi_table, y
-  sta zp_scratch_1_hi
-  frame = zp_scratch_1
+  sta zp_scratch_01_hi
+  frame = zp_scratch_01
 
 ; --------------------------------------------------
 ; add x and y position of current enemy to pointer
 ; --------------------------------------------------
   ldx current_enemy
   lda enemy_y_hi, x
-  sta zp_scratch_0
+  sta zp_scratch_00
   lda enemy_x_hi, x
   sta zp_scratch_02
-  xpos = zp_scratch_0
+  xpos = zp_scratch_00
   ypos = zp_scratch_02
   
 ; --------------------------------------------------
