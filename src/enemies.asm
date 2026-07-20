@@ -183,7 +183,7 @@ dont_reset_path_index:
 ; set this to 1, ensures enemy does not shoot multiple times
   lda #ENEMY_CANNOT_SHOOT
   sta can_shoot
-
+  
   jsr ShootEnemyBullets
 
 dont_shoot:

@@ -1,10 +1,10 @@
 Modules list:
 -------------
 main.o:
-    CODE              Offs=000000  Size=001860  Align=00001  Fill=0000
+    CODE              Offs=000000  Size=00191A  Align=00001  Fill=0000
     RODATA            Offs=000000  Size=00600F  Align=00001  Fill=0000
     BSS               Offs=000000  Size=000048  Align=00001  Fill=0000
-    ZEROPAGE          Offs=000000  Size=0000B5  Align=00001  Fill=0000
+    ZEROPAGE          Offs=000000  Size=0000B6  Align=00001  Fill=0000
     HEADER            Offs=000000  Size=00000A  Align=00001  Fill=0000
     VECTORS           Offs=000000  Size=000006  Align=00001  Fill=0000
     CHRROM_TEXT       Offs=000000  Size=002000  Align=00001  Fill=0000
@@ -38,10 +38,10 @@ CHRROM_LEVEL4         000000  001FFF  002000  00001
 CHRROM_TEXT           000000  001FFF  002000  00001
 CHRROM_TITLE          000000  001FFF  002000  00001
 HEADER                000000  000009  00000A  00001
-ZEROPAGE              000010  0000C4  0000B5  00001
+ZEROPAGE              000010  0000C5  0000B6  00001
 BSS                   000300  000347  000048  00001
-CODE                  008000  00985F  001860  00001
-RODATA                009900  00F90E  00600F  00001
+CODE                  008000  009919  00191A  00001
+RODATA                009A00  00FA0E  00600F  00001
 VECTORS               00FFFA  00FFFF  000006  00001
 
 
